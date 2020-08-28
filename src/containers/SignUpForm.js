@@ -5,8 +5,6 @@ import {
   ImageBackground,
   Image,
   View,
-  TouchableOpacity,
-  TouchableHighlight,
   Text,
   TextInput,
   Picker
