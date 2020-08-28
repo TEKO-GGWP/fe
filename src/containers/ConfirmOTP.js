@@ -6,7 +6,7 @@ import {
   Image,
   View,
   TouchableOpacity,
-  Text
+  Text,
 } from 'react-native'
 
 import backgroundImage from '../../assets/background.png'
@@ -23,10 +23,12 @@ const OPTDigit = () => {
         <TextInput
           style={styles.digitInput}
           keyboardType="numeric"
+          maxLength={1}
         />
       </View>
     )
   }
+
   return (
     <View style={styles.digitContainer}>
       {digitContainer}
@@ -41,17 +43,21 @@ export default function ConfirmOTP () {
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Xác minh mã OTP</Text>
         </View>
+
         <Text style={styles.subTitle}>Vui lòng nhập mã số đã được gửi qua SMS</Text>
+
         <OPTDigit />
+
         <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.nextButton}>
-          <Text style={styles.text}>Tiếp tục</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.nextButton}>
+            <Text style={styles.text}>Tiếp tục</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.resend}>
           <Text style={styles.resendText}>Chưa nhận được mã? </Text>
           <Text style={styles.resendSubText}>Gửi lại</Text>
         </View>
+
         <View style={styles.footer}>
           <Image source={phongvuLogo} />
         </View>
@@ -90,12 +96,13 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   subTitle: {
+    flex: 1 / 9,
     fontSize: 14,
     color: '#1536C3',
     marginBottom: 30
   },
   digitContainer: {
-    flex: 2 / 9,
+    flex: 1 / 9,
     width: '100%',
     height: 60,
     flexDirection: 'row',
@@ -118,8 +125,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   buttonContainer: {
-    flex: 1/9, 
-  }, 
+    flex: 1 / 9
+  },
   nextButton: {
     width: 300,
     height: 50,
@@ -127,7 +134,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     backgroundColor: 'rgb(21, 54, 195)',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   text: {
     textTransform: 'uppercase',
