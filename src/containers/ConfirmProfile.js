@@ -24,23 +24,32 @@ export default function ConfirmProfile () {
           <Text style={styles.title}>Thông tin cơ bản</Text>
         </View>
 
-        <TextInput placeholder="Họ và tên"/>
-        <TextInput placeholder="Ngày sinh"/>
-        <View>
-          Giới tính
-          <RadioButton
-            value="male"
-            status={ checked === 'male' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked('male')}
-          />
-          <RadioButton
-            value="female"
-            status={ checked === 'female' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked('female')}
-          />
+        <View style={styles.form}>
+          <TextInput placeholder="Họ và tên" style={styles.input}/>
+          <TextInput placeholder="Ngày sinh" style={styles.input}/>
+          <View style={styles.gender}>
+            <Text>Giới tính</Text>
+            <View style={styles.gender}>
+              <RadioButton
+                value="male"
+                status={ checked === 'male' ? 'checked' : 'unchecked' }
+                color="#1536C3"
+                onPress={() => setChecked('male')}
+              />
+              <Text>Nam</Text>
+            </View>
+            <View style={styles.gender}>
+              <RadioButton
+                value="female"
+                status={ checked === 'female' ? 'checked' : 'unchecked' }
+                color="#1536C3"
+                onPress={() => setChecked('female')}
+              />
+              <Text>Nữ</Text>
+            </View>
+          </View>
+          <TextInput placeholder="Email" keyboardType="email-address" style={styles.input}/>
         </View>
-        <TextInput placeholder="Email" keyboardType="email-address"/>
-        <TextInput placeholder="Họ và tên"/>
 
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.nextButton}>
@@ -76,7 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   titleContainer: {
-    flex: 3 / 9,
+    flex: 2 / 9,
     justifyContent: 'flex-end'
   },
   title: {
@@ -84,6 +93,19 @@ const styles = StyleSheet.create({
     color: '#1536C3',
     fontWeight: 'bold',
     marginBottom: 10
+  },
+  form: {
+    flex: 5 / 9,
+  },
+  input: {
+    width: 350,
+    height: 50,
+    backgroundColor: '#fff',
+    marginBottom: 10,
+  },
+  gender: {
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   buttonContainer: {
     flex: 1 / 9
