@@ -12,7 +12,7 @@ import backgroundImage from '../../assets/background.png'
 import phongvuIcon from '../../assets/pv-icon.png'
 import phongvuLogo from '../../assets/pv-logo.png'
 
-export default function Welcome() {
+export default function Welcome () {
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
