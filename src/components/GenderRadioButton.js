@@ -4,12 +4,10 @@ import {
   View,
   Text
 } from 'react-native'
-// import {Picker} from '@react-native-community/picker';
 import { RadioButton } from 'react-native-paper'
 export default function GenderRadioButton (props) {
-  /* eslint-disable no-unused-vars */
+  // eslint-disable-next-line react/prop-types
   const { isMale, onChangeGender } = props
-  /* eslint-enable no-unused-vars */
   return (
     <View style={styles.radioButtonsListWrapper}>
       <Text style={styles.description}>Giới tính</Text>
