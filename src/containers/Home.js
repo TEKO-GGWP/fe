@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react'
-import { SafeAreaView, View, Image, StyleSheet, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native'
+import { SafeAreaView, View, Image, StyleSheet, Text, ScrollView, TouchableOpacity, FlatList, ImageBackground } from 'react-native'
 import phongvuIcon from '../../assets/pv-icon.png'
 import phongvuLogo from '../../assets/pv-logo.png'
 import { Feather } from '@expo/vector-icons'
@@ -11,16 +11,38 @@ import NumberFormat from 'react-number-format'
 
 const IntroItem = ({ item }) => {
   return (
-    <Image source={item.url} style={styles.introItem}/>
+    <Image
+      source={item.url}
+      style={styles.introItem}
+    />
   )
 }
 
 const CategoryHeader = ({ title, url }) => {
   return (
     <View style={styles.flexRow}>
-      <Text style={[styles.title, styles.upperCase]}>{title}</Text>
+      <Text
+        style={
+          [
+            styles.title,
+            styles.upperCase
+          ]
+        }
+      >
+        {title}
+      </Text>
       <TouchableOpacity>
-        <Text style={[styles.subtitle, styles.upperCase, styles.seeMore]}>Xem thêm</Text>
+        <Text
+          style={
+            [
+              styles.subtitle,
+              styles.upperCase,
+              styles.seeMore
+            ]
+          }
+        >
+          Xem thêm
+        </Text>
       </TouchableOpacity>
     </View>
   )
@@ -28,9 +50,23 @@ const CategoryHeader = ({ title, url }) => {
 
 const CategoryGift = ({ gifts }) => {
   return (
-    <View style={[styles.flexRow, { justifyContent: 'flex-start' }]}>
+    <View
+      style={
+        [
+          styles.flexRow,
+          { justifyContent: 'flex-start' }
+        ]
+      }
+    >
       <Text style={styles.font12}>Tặng ngay</Text>
-      {gifts.map((item, i) => <Image source={item} key={`gift${i}`} style={styles.itemGifts} />)}
+      {gifts.map(
+        (item, i) =>
+          <Image
+            source={item}
+            key={`gift${i}`}
+            style={styles.itemGifts}
+          />
+      )}
     </View>
   )
 }
@@ -43,7 +79,8 @@ const CategoryPrice = ({ price, cls }) => {
       thousandSeparator={true}
       suffix={'₫'}
       renderText={
-        value => <Text style={cls}>{value}</Text>
+        value =>
+          <Text style={cls}>{value}</Text>
       }
     />
   )
@@ -65,20 +102,46 @@ const CategoryItem = ({ item }) => {
         {item.name}
       </Text>
       <View style={styles.priceContainer}>
-        <CategoryPrice price={item.price} cls={styles.itemPrice} />
-        <Feather name="truck" color="lightgreen" />
+        <CategoryPrice
+          price={item.price}
+          cls={styles.itemPrice}
+        />
+        <Feather
+          name="truck"
+          color="lightgreen"
+        />
       </View>
       <View style={styles.flexRow}>
         <View>
-          <Text style={styles.font12}>Giảm ngay</Text>
-          <CategoryPrice price={item.discountRate} cls={styles.saleText} />
+          <Text style={styles.font12}>
+            Giảm ngay
+          </Text>
+          <CategoryPrice
+            price={item.discountRate}
+            cls={styles.saleText}
+          />
         </View>
         <View>
-          <Text style={[styles.font12, styles.onlyCost]}>Chỉ còn</Text>
-          <CategoryPrice price={item.discountedPrice} cls={styles.saleText} />
+          <Text
+            style={
+              [
+                styles.font12,
+                styles.onlyCost
+              ]
+            }
+          >
+            Chỉ còn
+          </Text>
+          <CategoryPrice
+            price={item.discountedPrice}
+            cls={styles.saleText}
+          />
         </View>
       </View>
-      {item.gifts.length > 0 ? <CategoryGift gifts={item.gifts} /> : null}
+      {item.gifts.length > 0
+        ? <CategoryGift gifts={item.gifts} />
+        : null
+      }
     </View>
   )
 }
@@ -86,13 +149,85 @@ const CategoryItem = ({ item }) => {
 const Category = ({ item }) => {
   return (
     <View>
-      <CategoryHeader title={item.name} url={null}/>
+      <CategoryHeader
+        title={item.name}
+        url={null}
+      />
       <FlatList
         data={item.item}
         renderItem={item => <CategoryItem item={item.item} />}
         keyExtractor={item => item.id}
         numColumns= {2}
       />
+    </View>
+  )
+}
+
+const Interest = () => {
+  return (
+    <View>
+      <Text
+        style={
+          [
+            styles.title,
+            styles.upperCase,
+            { marginLeft: 5 }
+          ]
+        }
+      >
+        Có thể bạn quan tâm
+      </Text>
+      <View style={styles.flexRow}>
+        <View style={styles.interestItem}>
+          <ImageBackground
+            source={require('../../assets/intro-home.png')}
+            style={styles.interestBgr}
+            imageStyle={styles.interestImg}
+          >
+            <Text style={[styles.interestText, styles.upperCase]}>Build PC</Text>
+          </ImageBackground>
+        </View>
+        <View style={styles.interestItem}>
+          <ImageBackground
+            source={require('../../assets/intro-home.png')}
+            style={styles.interestBgr}
+            imageStyle={styles.interestImg}
+          >
+            <Text
+              style={
+                [
+                  styles.interestText,
+                  styles.upperCase
+                ]
+              }
+            >
+              Build PC
+            </Text>
+          </ImageBackground>
+        </View>
+      </View>
+      <View style={styles.interestBigItem}>
+        <ImageBackground
+          source={require('../../assets/intro-home.png')}
+          style={styles.interestBgr}
+          imageStyle={styles.interestImg}
+        >
+          <Text
+            style={
+              [
+                styles.interestText,
+                styles.upperCase,
+                { textAlign: 'center' }
+              ]
+            }
+          >
+            Build PC
+          </Text>
+        </ImageBackground>
+      </View>
+      <View>
+
+      </View>
     </View>
   )
 }
@@ -106,7 +241,9 @@ export default function Home () {
             source={phongvuLogo}
             style={styles.logo}
           />
-          <Text style={styles.subtitle}>Xin chào, Nam!</Text>
+          <Text style={styles.subtitle}>
+            Xin chào, Nam!
+          </Text>
         </View>
         <TouchableOpacity>
           <Feather
@@ -118,9 +255,18 @@ export default function Home () {
         </TouchableOpacity>
       </View>
       <View style={styles.searchBar}>
-        <Feather name='search' size={15} color="#1434C3" />
+        <Feather
+          name='search'
+          size={15}
+          color="#1434C3"
+        />
         <TextInput
-          style={[styles.subtitle, styles.searchInput]}
+          style={
+            [
+              styles.subtitle,
+              styles.searchInput
+            ]
+          }
           placeholder="Bạn cần tìm mua gì?"
           underlineColor='transparent'
           underlineColorAndroid='transparent'
@@ -135,6 +281,7 @@ export default function Home () {
           keyExtractor={item => item.id}
           horizontal={true}
         />
+        <Interest />
         {category.map((item) => <Category item={item} key={item.id}/>)}
       </ScrollView>
       <View style={styles.upperImage}>
@@ -213,6 +360,31 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 5
+  },
+  interestItem: {
+    width: '49%',
+    height: 200,
+    marginTop: 30
+  },
+  interestBigItem: {
+    width: '100%',
+    height: 200,
+    marginTop: 10,
+    padding: 5
+  },
+  interestBgr: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'flex-end'
+  },
+  interestImg: {
+    borderRadius: 20
+  },
+  interestText: {
+    padding: 10,
+    fontSize: 16,
+    color: '#465EB1',
+    fontWeight: 'bold'
   },
   categoryItem: {
     width: '50%'
