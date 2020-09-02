@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import React from 'react'
 import { SafeAreaView, View, Image, StyleSheet, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native'
 import phongvuIcon from '../../assets/pv-icon.png'
@@ -5,7 +7,7 @@ import phongvuLogo from '../../assets/pv-logo.png'
 import { Feather } from '@expo/vector-icons'
 import { TextInput } from 'react-native-paper'
 import { introUrl, category } from '../data/sample'
-import NumberFormat from 'react-number-format';
+import NumberFormat from 'react-number-format'
 
 const IntroItem = ({ item }) => {
   return (
@@ -18,9 +20,32 @@ const CategoryHeader = ({ title, url }) => {
     <View style={styles.flexRow}>
       <Text style={[styles.title, styles.upperCase]}>{title}</Text>
       <TouchableOpacity>
-        <Text style={[styles.subtitle, styles.upperCase]}>Xem thêm</Text>
+        <Text style={[styles.subtitle, styles.upperCase, styles.seeMore]}>Xem thêm</Text>
       </TouchableOpacity>
     </View>
+  )
+}
+
+const CategoryGift = ({ gifts }) => {
+  return (
+    <View style={[styles.flexRow, { justifyContent: 'flex-start' }]}>
+      <Text style={styles.font12}>Tặng ngay</Text>
+      {gifts.map((item, i) => <Image source={item} key={`gift${i}`} style={styles.itemGifts} />)}
+    </View>
+  )
+}
+
+const CategoryPrice = ({ price, cls }) => {
+  return (
+    <NumberFormat
+      value={price}
+      displayType={'text'}
+      thousandSeparator={true}
+      suffix={'₫'}
+      renderText={
+        value => <Text style={cls}>{value}</Text>
+      }
+    />
   )
 }
 
@@ -40,47 +65,20 @@ const CategoryItem = ({ item }) => {
         {item.name}
       </Text>
       <View style={styles.priceContainer}>
-        <NumberFormat
-          value={item.price}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={'đ'}
-          renderText={
-            value => <Text style={styles.itemPrice}>{value}</Text>
-          }
-        />
+        <CategoryPrice price={item.price} cls={styles.itemPrice} />
         <Feather name="truck" color="lightgreen" />
       </View>
       <View style={styles.flexRow}>
         <View>
-          <Text>Giảm ngay</Text>
-          <NumberFormat
-            value={item.discountRate}
-            displayType={'text'}
-            thousandSeparator={true}
-            suffix={'đ'}
-            renderText={
-              value => <Text>{value}</Text>
-            }
-          />
+          <Text style={styles.font12}>Giảm ngay</Text>
+          <CategoryPrice price={item.discountRate} cls={styles.saleText} />
         </View>
         <View>
-          <Text style={styles.saleText}>Chỉ còn</Text>
-          <NumberFormat
-            value={item.discountedPrice}
-            displayType={'text'}
-            thousandSeparator={true}
-            suffix={'đ'}
-            renderText={
-              value => <Text>{value}</Text>
-            }
-          />
+          <Text style={[styles.font12, styles.onlyCost]}>Chỉ còn</Text>
+          <CategoryPrice price={item.discountedPrice} cls={styles.saleText} />
         </View>
       </View>
-      <View style={styles.flexRow}>
-        <Text>Tặng ngay</Text>
-        {item.gifts.map((item, i) => <Image source={item} key={`gift${i}`} style={styles.itemGifts} />)}
-      </View>
+      {item.gifts.length > 0 ? <CategoryGift gifts={item.gifts} /> : null}
     </View>
   )
 }
@@ -171,8 +169,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 20,
-    marginLeft: 15,
-    marginRight: 15
+    marginLeft: 5,
+    marginRight: 5
   },
   searchInput: {
     backgroundColor: 'transparent'
@@ -187,11 +185,20 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#1434C3',
-    fontWeight: '500'
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginTop: 50
   },
   subtitle: {
     color: '#1434C3',
     fontWeight: '200'
+  },
+  font12: {
+    fontSize: 12
+  },
+  seeMore: {
+    marginTop: 50,
+    fontSize: 20
   },
   introItem: {
     width: 280,
@@ -205,7 +212,7 @@ const styles = StyleSheet.create({
   flexRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10
+    padding: 5
   },
   categoryItem: {
     width: '50%'
@@ -216,27 +223,38 @@ const styles = StyleSheet.create({
   },
   itemImage: {
     flex: 1,
-    marginLeft: 10,
-    marginRight: 10,
+    marginTop: 30,
+    marginLeft: 5,
+    marginRight: 5,
     resizeMode: 'cover'
   },
   itemName: {
-    padding: 10
+    padding: 5
   },
   priceContainer: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 5,
+    marginBottom: 5
   },
   itemPrice: {
-    fontWeight: '500',
+    fontWeight: 'bold',
     marginRight: 5,
-    marginLeft: 10
+    marginLeft: 5
   },
   itemGifts: {
     width: 30,
-    height: 20
+    height: 20,
+    marginLeft: 5,
+    borderRadius: 2,
+    borderColor: '#F1FDFD',
+    borderWidth: 1
+  },
+  onlyCost: {
+    textAlign: 'right'
   },
   saleText: {
-    textAlign: 'right'
+    color: '#EF2741',
+    fontWeight: 'bold'
   }
 })
