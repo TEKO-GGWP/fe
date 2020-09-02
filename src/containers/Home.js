@@ -1,15 +1,15 @@
-/* eslint-disable react/prop-types */
-
 import React from 'react'
 import { SafeAreaView, View, Image, StyleSheet, Text, ScrollView, TouchableOpacity, FlatList, ImageBackground } from 'react-native'
 import phongvuIcon from '../../assets/pv-icon.png'
 import phongvuLogo from '../../assets/pv-logo.png'
 import { Feather } from '@expo/vector-icons'
-import { TextInput } from 'react-native-paper'
+// import { TextInput } from 'react-native-paper'
 import { introUrl, category } from '../data/sample'
 import NumberFormat from 'react-number-format'
 
-const IntroItem = ({ item }) => {
+const IntroItem = (item) => {
+  item = item.item
+
   return (
     <Image
       source={item.url}
@@ -18,7 +18,9 @@ const IntroItem = ({ item }) => {
   )
 }
 
-const CategoryHeader = ({ title, url }) => {
+const CategoryHeader = (item) => {
+  const { title } = item
+
   return (
     <View style={styles.flexRow}>
       <Text
@@ -48,7 +50,9 @@ const CategoryHeader = ({ title, url }) => {
   )
 }
 
-const CategoryGift = ({ gifts }) => {
+const CategoryGift = (item) => {
+  const { gifts } = item
+
   return (
     <View
       style={
@@ -71,7 +75,9 @@ const CategoryGift = ({ gifts }) => {
   )
 }
 
-const CategoryPrice = ({ price, cls }) => {
+const CategoryPrice = (item) => {
+  const { price, cls } = item
+
   return (
     <NumberFormat
       value={price}
@@ -86,7 +92,9 @@ const CategoryPrice = ({ price, cls }) => {
   )
 }
 
-const CategoryItem = ({ item }) => {
+const CategoryItem = (item) => {
+  item = item.item
+
   return (
     <View style={styles.categoryItem}>
       <View style={styles.itemImageContainer}>
@@ -146,7 +154,9 @@ const CategoryItem = ({ item }) => {
   )
 }
 
-const Category = ({ item }) => {
+const Category = (item) => {
+  item = item.item
+
   return (
     <View>
       <CategoryHeader
@@ -201,7 +211,7 @@ const Interest = () => {
                 ]
               }
             >
-              Build PC
+              Tin Công Nghệ
             </Text>
           </ImageBackground>
         </View>
@@ -221,7 +231,7 @@ const Interest = () => {
               ]
             }
           >
-            Build PC
+            Sản phẩm được yêu thích
           </Text>
         </ImageBackground>
       </View>
@@ -233,6 +243,10 @@ const Interest = () => {
 }
 
 export default function Home () {
+  const handleGoTop = () => {
+    this.scroll.scrollTo({ y: 0, animated: true })
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -247,6 +261,13 @@ export default function Home () {
         </View>
         <TouchableOpacity>
           <Feather
+            name='search'
+            size={25}
+            color="#1434C3"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Feather
             name='shopping-cart'
             size={25}
             color="#1434C3"
@@ -254,7 +275,7 @@ export default function Home () {
           />
         </TouchableOpacity>
       </View>
-      <View style={styles.searchBar}>
+      {/* <View style={styles.searchBar}>
         <Feather
           name='search'
           size={15}
@@ -273,8 +294,8 @@ export default function Home () {
           autoCorrect={false}
         >
         </TextInput>
-      </View>
-      <ScrollView style={styles.body}>
+      </View> */}
+      <ScrollView style={styles.body} ref={(c) => { this.scroll = c }}>
         <FlatList
           data={introUrl}
           renderItem={item => <IntroItem item={item.item} />}
@@ -283,6 +304,22 @@ export default function Home () {
         />
         <Interest />
         {category.map((item) => <Category item={item} key={item.id}/>)}
+        <TouchableOpacity style={styles.goTopButton} onPress={() => handleGoTop()}>
+          <Text style={styles.goTopText}>Quay lại đầu trang</Text>
+          <Feather
+            name='chevron-up'
+            size={30}
+            color="#1434C3"
+          />
+        </TouchableOpacity>
+        <View style={styles.footer}>
+          <Image
+            source={phongvuLogo}
+            style={styles.logo}
+          />
+          <Text style={styles.footerText}>© 1997 - 2020 Công Ty Cổ Phần Thương Mại - Dịch Vụ Phong Vũ / GPĐKKD số 0304998358 do Sở KHĐT TP.HCM cấp</Text>
+          <Text style={styles.footerText}>Sponsored by Teko.vn</Text>
+        </View>
       </ScrollView>
       <View style={styles.upperImage}>
         <Image source={phongvuIcon} />
@@ -309,21 +346,21 @@ const styles = StyleSheet.create({
   logo: {
     marginBottom: 5
   },
-  searchBar: {
-    flex: 1 / 9,
-    backgroundColor: '#F1FDFD',
-    borderRadius: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingLeft: 20,
-    marginLeft: 5,
-    marginRight: 5
-  },
+  // searchBar: {
+  //   flex: 1 / 9,
+  //   backgroundColor: '#F1FDFD',
+  //   borderRadius: 20,
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  //   paddingLeft: 20,
+  //   marginLeft: 5,
+  //   marginRight: 5
+  // },
   searchInput: {
     backgroundColor: 'transparent'
   },
   body: {
-    flex: 7 / 9
+    flex: 8 / 9
   },
   upperImage: {
     position: 'absolute',
@@ -334,7 +371,8 @@ const styles = StyleSheet.create({
     color: '#1434C3',
     fontWeight: 'bold',
     fontSize: 20,
-    marginTop: 50
+    marginTop: 50,
+    width: '70%'
   },
   subtitle: {
     color: '#1434C3',
@@ -378,7 +416,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   interestImg: {
-    borderRadius: 20
+    borderRadius: 15
   },
   interestText: {
     padding: 10,
@@ -428,5 +466,24 @@ const styles = StyleSheet.create({
   saleText: {
     color: '#EF2741',
     fontWeight: 'bold'
+  },
+  footer: {
+    backgroundColor: '#E1F9FB',
+    alignItems: 'center',
+    padding: 10,
+    marginTop: 20
+  },
+  footerText: {
+    color: '#1C3DC5',
+    fontSize: 10,
+    textAlign: 'center',
+    marginTop: 5
+  },
+  goTopText: {
+    color: '#707070'
+  },
+  goTopButton: {
+    alignItems: 'center',
+    marginTop: 20
   }
 })
