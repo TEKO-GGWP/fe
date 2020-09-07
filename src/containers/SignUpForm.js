@@ -141,7 +141,10 @@ export default function SignUpForm () {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+
+    flex: 1,
+    flexDirection: 'column'
+
   },
   backgroundImage: {
     flex: 1,
