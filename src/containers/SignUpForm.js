@@ -34,7 +34,6 @@ export default function SignUpForm () {
     })
     setCities(tempCities)
   }, [])
-
   const onCityValueChange = (city) => {
     setUserProfile({ ...userProfile, city })
     const tempDistricts = []
@@ -141,10 +140,8 @@ export default function SignUpForm () {
 
 const styles = StyleSheet.create({
   container: {
-
     flex: 1,
     flexDirection: 'column'
-
   },
   backgroundImage: {
     flex: 1,
