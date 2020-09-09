@@ -1,0 +1,22 @@
+{
+  "PC": {
+    "name": "PC - MÁY TÍNH",
+    "img": "../../assets/splash.png"
+  },
+  "PHONE": {
+    "name": "ĐIỆN THOẠI",
+    "img": "../../assets/splash.png"
+  },
+  "COMPONENTS": {
+    "name": "LINH KIỆN",
+    "img": "../../assets/splash.png"
+  },
+  "APPS": {
+    "name": "GIA DỤNG",
+    "img": "../../assets/splash.png"
+  },
+  "OFFICE": {
+    "name": "THIẾT BỊ VĂN PHÒNG",
+    "img": "../../assets/splash.png"
+  }
+}
