@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
-  Image,
-  ImageBackground,
-  Picker,
   SafeAreaView,
   StyleSheet,
+  ImageBackground,
+  Image,
+  View,
   Text,
   TextInput,
-  TouchableOpacity,
-  View
+  Picker,
+  TouchableOpacity
 } from 'react-native'
-
+// import {Picker} from '@react-native-community/picker';
 import backgroundImage from '../../assets/background.png'
 import phongvuIcon from '../../assets/pv-icon.png'
 import phongvuLogo from '../../assets/pv-logo.png'
-import { RadioButton } from 'react-native-paper'
+import GenderRadioButton from '../components/GenderRadioButton'
 import * as VIETNAM_DATA from '../data/vietnam_provinces_cities.json'
-
 export default function SignUpForm () {
   const [userProfile, setUserProfile] = useState({
     name: '',
@@ -30,22 +29,16 @@ export default function SignUpForm () {
   const [districts, setDistricts] = useState([])
   useEffect(() => {
     const tempCities = []
-    Object.keys(VIETNAM_DATA).map(key => {
-      tempCities.push({
-        value: key,
-        name: VIETNAM_DATA[key].name
-      })
+    Object.keys(VIETNAM_DATA).map((key) => {
+      tempCities.push({ value: key, name: VIETNAM_DATA[key].name })
     })
     setCities(tempCities)
   }, [])
 
-  const onCityValueChange = city => {
-    setUserProfile({
-      ...userProfile,
-      city
-    })
+  const onCityValueChange = (city) => {
+    setUserProfile({ ...userProfile, city })
     const tempDistricts = []
-    Object.keys(VIETNAM_DATA[city].cities).map(key => {
+    Object.keys(VIETNAM_DATA[city].cities).map((key) => {
       tempDistricts.push({
         value: key,
         name: VIETNAM_DATA[city].cities[key]
@@ -53,14 +46,15 @@ export default function SignUpForm () {
     })
     setDistricts(tempDistricts)
   }
+  const changeGenderProfile = (isMale) => {
+    setUserProfile({ ...userProfile, isMale })
+  }
+  const sendUserProfile = () => {}
   return (
     <SafeAreaView style={styles.container}>
-      <ImageBackground
-        source={backgroundImage}
-        style={styles.backgroundImage}
-      >
+      <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
         <View style={styles.iconWrapper}>
-          <Image source={phongvuIcon}/>
+          <Image source={phongvuIcon} />
         </View>
         <View style={styles.formWrapper}>
           <Text style={styles.title}>Thông tin cơ bản</Text>
@@ -69,92 +63,44 @@ export default function SignUpForm () {
             placeholderTextColor="#707070"
             autoCapitalize="none"
             style={styles.textInput}
-            onChangeText={name =>
-              setUserProfile({
-                ...userProfile,
-                name
-              })
-            }
+            onChangeText={(name) => setUserProfile({ ...userProfile, name })}
           />
           <TextInput
             placeholder="Ngày sinh"
             autoCapitalize="none"
             placeholderTextColor="#707070"
             style={styles.textInput}
-            onChangeText={dob =>
-              setUserProfile({
-                ...userProfile,
-                dob
-              })
-            }
+            onChangeText={(dob) => setUserProfile({ ...userProfile, dob })}
           />
-          <View style={styles.radioButtonsListWrapper}>
-            <Text style={styles.description}>Giới tính</Text>
-            <View style={styles.radioButtonWrapper}>
-              <RadioButton
-                value="Male"
-                status={
-                  userProfile.isMale ? 'checked' : 'unchecked'
-                }
-                color="rgb(21, 54, 195)"
-                onPress={() =>
-                  setUserProfile({
-                    ...userProfile,
-                    isMale: true
-                  })
-                }
-              />
-              <Text style={styles.description}>Nam</Text>
-            </View>
-            <View style={styles.radioButtonWrapper}>
-              <RadioButton
-                value="Female"
-                color="rgb(21, 54, 195)"
-                status={
-                  !userProfile.isMale
-                    ? 'checked'
-                    : 'unchecked'
-                }
-                onPress={() =>
-                  setUserProfile({
-                    ...userProfile,
-                    isMale: false
-                  })
-                }
-              />
-              <Text style={styles.description}>Nữ</Text>
-            </View>
-          </View>
+          <GenderRadioButton
+            isMale={userProfile.isMale}
+            onChangeGender={changeGenderProfile}
+          />
           <TextInput
             placeholder="Email"
             autoCapitalize="none"
             placeholderTextColor="#707070"
             style={styles.textInput}
-            onChangeText={email =>
-              setUserProfile({
-                ...userProfile,
-                email
-              })
-            }
+            onChangeText={(email) => setUserProfile({ ...userProfile, email })}
           />
           <View style={styles.pickerWrapper}>
             <Picker
               selectedValue={userProfile.city}
               style={styles.picker}
               prompt="City"
-              onValueChange={city => onCityValueChange(city)}
+              onValueChange={(city) => onCityValueChange(city)}
             >
-              <Picker.Item label="Tỉnh Thành phố" value="none"/>
+              <Picker.Item label="Tỉnh Thành phố" value="none" />
               {cities !== 'undefined' &&
-              cities
-                .slice(0, cities.length - 1)
-                .map((city, index) => (
-                  <Picker.Item
-                    key={index}
-                    label={city.name}
-                    value={city.value}
-                  />
-                ))}
+                cities
+                  .slice(0, cities.length - 1)
+                  .map((city, index) => (
+                    <Picker.Item
+                      key={index}
+                      label={city.name}
+                      value={city.value}
+                    />
+                  ))}
             </Picker>
           </View>
           <View style={styles.pickerWrapper}>
@@ -162,39 +108,31 @@ export default function SignUpForm () {
               selectedValue={userProfile.district}
               style={styles.picker}
               prompt="District"
-              onValueChange={district =>
-                setUserProfile({
-                  ...userProfile,
-                  district
-                })
+              onValueChange={(district) =>
+                setUserProfile({ ...userProfile, district })
               }
             >
-              <Picker.Item label="Quận/ Huyện" value="none"/>
+              <Picker.Item label="Quận/Huyện" value="none" />
               {districts !== 'undefined' &&
-              districts
-                .slice(0, districts.length - 1)
-                .map((district, index) => (
-                  <Picker.Item
-                    key={index}
-                    label={district.name}
-                    value={district.value}
-                  />
-                ))}
+                districts
+                  .slice(0, districts.length - 1)
+                  .map((district, index) => (
+                    <Picker.Item
+                      key={index}
+                      label={district.name}
+                      value={district.value}
+                    />
+                  ))}
             </Picker>
           </View>
-          <TouchableOpacity style={styles.button}>
-            <Text
-              style={styles.text}
-              onPress={() => console.log(userProfile)}
-            >
-              Tiếp tục
-            </Text>
+          <TouchableOpacity style={styles.button} onPress={sendUserProfile}>
+            <Text style={styles.text}>Tiếp tục</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.footer}>
-          <Image style={styles.logoImage} source={phongvuLogo}/>
-          <Image style={styles.iconImage} source={phongvuIcon}/>
+          <Image style={styles.logoImage} source={phongvuLogo} />
+          <Image style={styles.iconImage} source={phongvuIcon} />
         </View>
       </ImageBackground>
     </SafeAreaView>
@@ -203,8 +141,10 @@ export default function SignUpForm () {
 
 const styles = StyleSheet.create({
   container: {
+
     flex: 1,
     flexDirection: 'column'
+
   },
   backgroundImage: {
     flex: 1,
