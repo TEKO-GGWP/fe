@@ -1,7 +1,7 @@
 import React from 'react'
 import { SafeAreaView, View, Image, StyleSheet, Text, ScrollView, TouchableOpacity, FlatList, ImageBackground } from 'react-native'
-import phongvuIcon from '../../assets/pv-icon.png'
-import phongvuLogo from '../../assets/pv-logo.png'
+import phongvuIcon from '../../assets/pv-icon.svg'
+import phongvuLogo from '../../assets/pv-logo.svg'
 import { Feather } from '@expo/vector-icons'
 // import { TextInput } from 'react-native-paper'
 import { introUrl, category } from '../data/sample'
@@ -62,7 +62,7 @@ const CategoryGift = (item) => {
         ]
       }
     >
-      <Text style={styles.font12}>Tặng ngay</Text>
+      <Text style={styles.font11}>Tặng ngay</Text>
       {gifts.map(
         (item, i) =>
           <Image
@@ -121,19 +121,19 @@ const CategoryItem = (item) => {
       </View>
       <View style={styles.flexRow}>
         <View>
-          <Text style={styles.font12}>
+          <Text style={styles.font11}>
             Giảm ngay
           </Text>
           <CategoryPrice
             price={item.discountRate}
-            cls={styles.saleText}
+            cls={[styles.font11, styles.saleText]}
           />
         </View>
         <View>
           <Text
             style={
               [
-                styles.font12,
+                styles.font11,
                 styles.onlyCost
               ]
             }
@@ -142,7 +142,7 @@ const CategoryItem = (item) => {
           </Text>
           <CategoryPrice
             price={item.discountedPrice}
-            cls={styles.saleText}
+            cls={[styles.font11, styles.saleText]}
           />
         </View>
       </View>
@@ -250,7 +250,7 @@ export default function Home () {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <View>
+        <View style={{ zIndex: 2, elevation: 2 }}>
           <Image
             source={phongvuLogo}
             style={styles.logo}
@@ -264,6 +264,7 @@ export default function Home () {
             name='search'
             size={25}
             color="#1434C3"
+            style={styles.headerIcon}
           />
         </TouchableOpacity>
         <TouchableOpacity>
@@ -271,7 +272,7 @@ export default function Home () {
             name='shopping-cart'
             size={25}
             color="#1434C3"
-            style={styles.cart}
+            style={styles.headerIcon}
           />
         </TouchableOpacity>
       </View>
@@ -344,7 +345,15 @@ const styles = StyleSheet.create({
     padding: 20
   },
   logo: {
-    marginBottom: 5
+    marginTop: 15,
+    marginBottom: 5,
+    transform: [
+      { scale: 0.8 },
+      { translateX: -30 }
+    ]
+  },
+  headerIcon: {
+    marginTop: 15
   },
   // searchBar: {
   //   flex: 1 / 9,
@@ -365,21 +374,23 @@ const styles = StyleSheet.create({
   upperImage: {
     position: 'absolute',
     top: -15,
-    left: -15
+    left: -15,
+    zIndex: 1,
+    elevation: 1
   },
   title: {
     color: '#1434C3',
     fontWeight: 'bold',
     fontSize: 20,
     marginTop: 50,
-    width: '70%'
+    width: '60%'
   },
   subtitle: {
     color: '#1434C3',
     fontWeight: '200'
   },
-  font12: {
-    fontSize: 12
+  font11: {
+    fontSize: 11
   },
   seeMore: {
     marginTop: 50,

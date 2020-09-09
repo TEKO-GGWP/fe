@@ -95,13 +95,13 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   form: {
-    flex: 5 / 9,
+    flex: 5 / 9
   },
   input: {
     width: 350,
     height: 50,
     backgroundColor: '#fff',
-    marginBottom: 10,
+    marginBottom: 10
   },
   gender: {
     flexDirection: 'row',

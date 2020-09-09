@@ -6,7 +6,7 @@ import {
   Image,
   View,
   TouchableOpacity,
-  Text,
+  Text
 } from 'react-native'
 
 import backgroundImage from '../../assets/background.png'
