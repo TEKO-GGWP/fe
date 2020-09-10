@@ -19,8 +19,9 @@ import { category, introUrl } from '../data/sample'
 
 import phongvuIcon from '../../assets/pv-icon.svg'
 import phongvuLogo from '../../assets/pv-logo.svg'
+import { connect } from 'react-redux'
 
-export default function Home (props) {
+function Home (props) {
   const handleGoTop = () => {
     this.scroll.scrollTo({
       y: 0,
@@ -30,6 +31,7 @@ export default function Home (props) {
   const onNavigatingToDetailScreen = (data) => {
     props.navigation.navigate('Detail')
   }
+  console.log(props.userInformation)
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -42,7 +44,7 @@ export default function Home (props) {
             style={styles.logo}
           />
           <Text style={styles.subtitle}>
-            Xin chào, Nam!
+            Xin chào, {props.userInformation.name}!
           </Text>
         </View>
         <TouchableOpacity >
@@ -161,3 +163,11 @@ const styles = StyleSheet.create({
     marginTop: 20
   }
 })
+
+const mapStateToProps = state => {
+  return {
+    userInformation: state.userInformation
+  }
+}
+
+export default connect(mapStateToProps)(Home)

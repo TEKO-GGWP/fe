@@ -13,14 +13,17 @@ import PhoneInput from 'react-native-phone-input'
 import backgroundImage from '../../assets/background.png'
 import phongvuIcon from '../../assets/pv-icon.svg'
 import phongvuLogo from '../../assets/pv-logo.svg'
+import { connect } from 'react-redux'
+import { actAddPhoneNumber } from '../actions'
 
-export default function SignUp (props) {
+function SignUp (props) {
   const [phoneNumber, setPhoneNumber] = useState('')
   /* eslint-disable no-unused-vars */
   const [countryCode, setCountryCode] = useState('')
   /* eslint-enable no-unused-vars */
 
-  const onGoingToOTPScreen = () => {
+  const onNavigatingOTPScreen = () => {
+    props.onAddPhoneNumber(phoneNumber)
     props.navigation.navigate('ConfirmOTP')
   }
   return (
@@ -44,7 +47,7 @@ export default function SignUp (props) {
             buttonTextStyle={styles.countryPickStyle}
             autoFormat={true}
           />
-          <TouchableOpacity style={styles.button} onPress={onGoingToOTPScreen}>
+          <TouchableOpacity style={styles.button} onPress={onNavigatingOTPScreen}>
             <Text style={styles.text}>Tiếp tục</Text>
           </TouchableOpacity>
         </View>
@@ -114,3 +117,19 @@ const styles = StyleSheet.create({
     marginBottom: -50
   }
 })
+
+const mapStateToProps = state => {
+  return {
+    userInformation: state.userInformation
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onAddPhoneNumber: (phoneNumber) => {
+      dispatch(actAddPhoneNumber(phoneNumber))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

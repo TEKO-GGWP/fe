@@ -10,13 +10,16 @@ import {
   Picker,
   TouchableOpacity
 } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 // import {Picker} from '@react-native-community/picker';
 import backgroundImage from '../../assets/background.png'
 import phongvuIcon from '../../assets/pv-icon.png'
 import phongvuLogo from '../../assets/pv-logo.png'
 import GenderRadioButton from '../components/GenderRadioButton'
 import * as VIETNAM_DATA from '../data/vietnam_provinces_cities.json'
-export default function SignUpForm (props) {
+import { connect } from 'react-redux'
+import { actAddUserInformation } from '../actions'
+function SignUpForm (props) {
   const [userProfile, setUserProfile] = useState({
     name: '',
     email: '',
@@ -27,6 +30,15 @@ export default function SignUpForm (props) {
   })
   const [cities, setCities] = useState([])
   const [districts, setDistricts] = useState([])
+
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('@isAuthorized', value)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   useEffect(() => {
     const tempCities = []
     Object.keys(VIETNAM_DATA).map((key) => {
@@ -49,6 +61,8 @@ export default function SignUpForm (props) {
     setUserProfile({ ...userProfile, isMale })
   }
   const sendUserProfile = () => {
+    props.onAddUserInformation(userProfile)
+    storeData(true)
     props.navigation.navigate('Home')
   }
   return (
@@ -243,3 +257,19 @@ const styles = StyleSheet.create({
     fontSize: 24
   }
 })
+
+const mapStateToProps = state => {
+  return {
+    userInformation: state.userInformation
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onAddUserInformation: (userInformation) => {
+      dispatch(actAddUserInformation(userInformation))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm)
