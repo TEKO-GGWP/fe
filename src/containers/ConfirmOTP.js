@@ -19,7 +19,7 @@ const OPTDigit = () => {
 
   for (let i = 0; i < 4; i++) {
     digitContainer.push(
-      <View style={styles.digit}>
+      <View style={styles.digit} key={i}>
         <TextInput
           style={styles.digitInput}
           keyboardType="numeric"
