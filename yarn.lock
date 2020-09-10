@@ -5366,6 +5366,11 @@ react-native-phone-input@^0.2.4:
     lodash "^4.17.4"
     prop-types "^15.5.10"
 
+react-native-read-more-text@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-read-more-text/-/react-native-read-more-text-1.1.2.tgz#3f64aee61ec4d3109437f4125f10e49eccdee65a"
+  integrity sha512-FIQhOpvikUanwPRl9QVBYmx6Wx7IXxXH/jlzElOLcP+NSgFLw2fRzSekQUq0yicymZsi7cAWW5TtIj8FHWtNDw==
+
 react-native-safe-area-context@~3.0.7:
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.0.7.tgz#0f53de7a30d626d82936000f3f6db374ecc4b800"

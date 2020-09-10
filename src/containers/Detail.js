@@ -2,8 +2,11 @@ import React from 'react'
 import { SafeAreaView, StyleSheet, ScrollView } from 'react-native'
 import CarouselSlide from '../components/detail/CarouselSlide'
 import Specifications from '../components/detail/Specifications'
+import Promotions from '../components/detail/Promotions'
 
-import * as SAMPLE_PRODUCT from '../data/sample_detail_product.json'
+import * as SAMPLE_PRODUCTS from '../data/sample_detail_products.json'
+import PoliciesAndServices from '../components/detail/PoliciesAndServices'
+import SameBrandList from '../components/detail/SameBrandList'
 const DATA = [
   {
     name: 'Image 1',
@@ -39,7 +42,10 @@ export default function Detail () {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <CarouselSlide data={DATA} />
-        <Specifications data={SAMPLE_PRODUCT} />
+        <Specifications data={SAMPLE_PRODUCTS} />
+        <Promotions data={SAMPLE_PRODUCTS} />
+        <PoliciesAndServices />
+        <SameBrandList data={SAMPLE_PRODUCTS.same_brand_products} />
       </ScrollView>
     </SafeAreaView>
   )
@@ -47,7 +53,9 @@ export default function Detail () {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    marginHorizontal: 10,
+    marginVertical: 10
   },
   backgroundImage: {
     flex: 1,

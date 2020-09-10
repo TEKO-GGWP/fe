@@ -58,5 +58,33 @@
             "name": "Image 7",
             "path": "s531fa/7"
         }
+    ],
+    "promotions": [
+        {
+            "price": "6.290.000 d",
+            "sale": "200.000 d"
+        }
+    ],
+    "related_promotions": [
+        {
+            "content": "Nhập mã PHONGVU200 giảm thêm 5% tối đa 200.000đ khi thanh toán qua VNPAY-QR"
+        }
+    ],
+    "same_brand_products": [
+        {
+            "id": "1",
+            "name": "Bộ cấp nguồn/ Adapter Asus 19V-3.42A-65W (Đầu thường)",
+            "price": "385.000đ"
+        },
+        {
+            "id": "2",
+            "name": "Bộ cấp nguồn/ Adapter Asus 19V-3.42A-65W (Đầu thường)",
+            "price": "385.000đ"
+        },
+        {
+            "id": "3",
+            "name": "Bộ cấp nguồn/ Adapter Asus 19V-3.42A-65W (Đầu thường)",
+            "price": "385.000đ"
+        }
     ]
 }
