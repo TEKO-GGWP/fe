@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Image,
   ImageBackground,
   Picker,
   SafeAreaView,
@@ -12,10 +11,10 @@ import {
 } from 'react-native'
 
 import backgroundImage from '../../assets/background.png'
-import phongvuIcon from '../../assets/pv-icon.png'
-import phongvuLogo from '../../assets/pv-logo.png'
 import { RadioButton } from 'react-native-paper'
 import * as VIETNAM_DATA from '../data/vietnam_provinces_cities.json'
+import Icon from '../components/Icon'
+import Logo from '../components/Logo'
 
 export default function SignUpForm () {
   const [userProfile, setUserProfile] = useState({
@@ -53,14 +52,16 @@ export default function SignUpForm () {
     })
     setDistricts(tempDistricts)
   }
+  // const changeGenderProfile = (isMale) => {
+  //   setUserProfile({ ...userProfile, isMale })
+  // }
+  // const sendUserProfile = () => {}
+
   return (
     <SafeAreaView style={styles.container}>
-      <ImageBackground
-        source={backgroundImage}
-        style={styles.backgroundImage}
-      >
+      <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
         <View style={styles.iconWrapper}>
-          <Image source={phongvuIcon}/>
+          <Icon />
         </View>
         <View style={styles.formWrapper}>
           <Text style={styles.title}>Thông tin cơ bản</Text>
@@ -193,8 +194,10 @@ export default function SignUpForm () {
         </View>
 
         <View style={styles.footer}>
-          <Image style={styles.logoImage} source={phongvuLogo}/>
-          <Image style={styles.iconImage} source={phongvuIcon}/>
+          <View style={styles.logoImage}>
+            <Logo />
+          </View>
+          <Icon />
         </View>
       </ImageBackground>
     </SafeAreaView>

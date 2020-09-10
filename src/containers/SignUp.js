@@ -11,8 +11,8 @@ import {
 import PhoneInput from 'react-native-phone-input'
 
 import backgroundImage from '../../assets/background.png'
-import phongvuIcon from '../../assets/pv-icon.png'
-import phongvuLogo from '../../assets/pv-logo.png'
+import phongvuIcon from '../../assets/pv-icon.svg'
+import phongvuLogo from '../../assets/pv-logo.svg'
 
 export default function SignUp () {
   const [phoneNumber, setPhoneNumber] = useState('')
