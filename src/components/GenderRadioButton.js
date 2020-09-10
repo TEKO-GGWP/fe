@@ -5,9 +5,10 @@ import {
   Text
 } from 'react-native'
 import { RadioButton } from 'react-native-paper'
+
 export default function GenderRadioButton (props) {
-  // eslint-disable-next-line react/prop-types
   const { isMale, onChangeGender } = props
+
   return (
     <View style={styles.radioButtonsListWrapper}>
       <Text style={styles.description}>Giới tính</Text>
