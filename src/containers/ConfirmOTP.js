@@ -36,7 +36,10 @@ const OPTDigit = () => {
   )
 }
 
-export default function ConfirmOTP () {
+export default function ConfirmOTP (props) {
+  const onGoingToSignUpFormScreen = () => {
+    props.navigation.navigate('SignUpForm')
+  }
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
@@ -49,7 +52,7 @@ export default function ConfirmOTP () {
         <OPTDigit />
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.nextButton}>
+          <TouchableOpacity style={styles.nextButton} onPress={onGoingToSignUpFormScreen}>
             <Text style={styles.text}>Tiếp tục</Text>
           </TouchableOpacity>
         </View>

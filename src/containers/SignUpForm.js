@@ -16,7 +16,7 @@ import phongvuIcon from '../../assets/pv-icon.png'
 import phongvuLogo from '../../assets/pv-logo.png'
 import GenderRadioButton from '../components/GenderRadioButton'
 import * as VIETNAM_DATA from '../data/vietnam_provinces_cities.json'
-export default function SignUpForm () {
+export default function SignUpForm (props) {
   const [userProfile, setUserProfile] = useState({
     name: '',
     email: '',
@@ -48,7 +48,9 @@ export default function SignUpForm () {
   const changeGenderProfile = (isMale) => {
     setUserProfile({ ...userProfile, isMale })
   }
-  const sendUserProfile = () => {}
+  const sendUserProfile = () => {
+    props.navigation.navigate('Home')
+  }
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>

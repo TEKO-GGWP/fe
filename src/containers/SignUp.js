@@ -14,12 +14,15 @@ import backgroundImage from '../../assets/background.png'
 import phongvuIcon from '../../assets/pv-icon.svg'
 import phongvuLogo from '../../assets/pv-logo.svg'
 
-export default function SignUp () {
+export default function SignUp (props) {
   const [phoneNumber, setPhoneNumber] = useState('')
   /* eslint-disable no-unused-vars */
   const [countryCode, setCountryCode] = useState('')
   /* eslint-enable no-unused-vars */
 
+  const onGoingToOTPScreen = () => {
+    props.navigation.navigate('ConfirmOTP')
+  }
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
@@ -41,7 +44,7 @@ export default function SignUp () {
             buttonTextStyle={styles.countryPickStyle}
             autoFormat={true}
           />
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={onGoingToOTPScreen}>
             <Text style={styles.text}>Tiếp tục</Text>
           </TouchableOpacity>
         </View>
