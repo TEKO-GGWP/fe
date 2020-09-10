@@ -9,7 +9,8 @@ export default function App () {
   /* eslint-enable no-unused-vars */
   return (
     <SafeAreaView style={styles.container}>
-      {isAuthorized ? <Home /> : <SignUp />}
+      {/* {isAuthorized ? <Home /> : <SignUp />} */}
+      <Detail/>
     </SafeAreaView>
   )
 }
