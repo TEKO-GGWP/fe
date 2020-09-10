@@ -20,14 +20,16 @@ import { category, introUrl } from '../data/sample'
 import phongvuIcon from '../../assets/pv-icon.svg'
 import phongvuLogo from '../../assets/pv-logo.svg'
 
-export default function Home () {
+export default function Home (props) {
   const handleGoTop = () => {
     this.scroll.scrollTo({
       y: 0,
       animated: true
     })
   }
-
+  const onNavigatingToDetailScreen = (data) => {
+    props.navigation.navigate('Detail')
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -43,7 +45,7 @@ export default function Home () {
             Xin chào, Nam!
           </Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity >
           <Feather
             name='search'
             size={25}
@@ -51,7 +53,7 @@ export default function Home () {
             style={styles.headerIcon}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity >
           <Feather
             name='shopping-cart'
             size={25}
@@ -66,12 +68,12 @@ export default function Home () {
       }}>
         <FlatList
           data={introUrl}
-          renderItem={item => <IntroItem item={item.item}/>}
+          renderItem={item => <IntroItem item={item.item} />}
           keyExtractor={item => item.id}
           horizontal={true}
         />
-        <Interest/>
-        {category.map((item) => <Category item={item} key={item.id}/>)}
+        <Interest />
+        {category.map((item) => <Category item={item} key={item.id} onPress={onNavigatingToDetailScreen} />)}
         <TouchableOpacity style={styles.goTopButton} onPress={() => handleGoTop()}>
           <Text style={styles.goTopText}>Quay lại đầu trang</Text>
           <Feather
@@ -93,7 +95,7 @@ export default function Home () {
         </View>
       </ScrollView>
       <View style={styles.upperImage}>
-        <Image source={phongvuIcon}/>
+        <Image source={phongvuIcon} />
       </View>
     </SafeAreaView>
   )
