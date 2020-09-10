@@ -1,17 +1,15 @@
 import React from 'react'
+import backgroundImage from '../../assets/background.png'
+import Icon from '../components/Icon'
+import Logo from '../components/Logo'
 import {
   SafeAreaView,
   StyleSheet,
   ImageBackground,
-  Image,
   View,
   TouchableOpacity,
   Text
 } from 'react-native'
-
-import backgroundImage from '../../assets/background.png'
-import phongvuIcon from '../../assets/pv-icon.png'
-import phongvuLogo from '../../assets/pv-logo.png'
 import { TextInput } from 'react-native-paper'
 
 const OPTDigit = () => {
@@ -59,13 +57,13 @@ export default function ConfirmOTP () {
         </View>
 
         <View style={styles.footer}>
-          <Image source={phongvuLogo} />
+          <Logo />
         </View>
         <View style={styles.upperImage}>
-          <Image source={phongvuIcon} />
+          <Icon />
         </View>
         <View style={styles.lowerImage}>
-          <Image source={phongvuIcon} />
+          <Icon />
         </View>
       </ImageBackground>
     </SafeAreaView>

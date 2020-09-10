@@ -38,22 +38,24 @@ export default function Home () {
             Xin chào, Nam!
           </Text>
         </View>
-        <TouchableOpacity>
-          <Feather
-            name='search'
-            size={25}
-            color="#1434C3"
-            style={styles.headerIcon}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Feather
-            name='shopping-cart'
-            size={25}
-            color="#1434C3"
-            style={styles.headerIcon}
-          />
-        </TouchableOpacity>
+        <View style={styles.iconBox}>
+          <TouchableOpacity>
+            <Feather
+              name='search'
+              size={25}
+              color="#1434C3"
+              style={styles.headerIcon}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Feather
+              name='shopping-cart'
+              size={25}
+              color="#1434C3"
+              style={styles.headerIcon}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
 
       <ScrollView style={styles.body} ref={(c) => {
@@ -107,20 +109,18 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginTop: 15,
-    marginBottom: 5,
-    transform: [
-      { scale: 0.8 },
-      { translateX: -30 }
-    ]
+    marginBottom: 5
+  },
+  iconBox: {
+    flexDirection: 'row'
   },
   headerIcon: {
-    marginTop: 15
-  },
-  searchInput: {
-    backgroundColor: 'transparent'
+    marginTop: 15,
+    marginLeft: 20
   },
   body: {
-    flex: 8 / 9
+    flex: 8 / 9,
+    elevation: 2
   },
   upperImage: {
     position: 'absolute',

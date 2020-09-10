@@ -60,9 +60,9 @@ export default function SignUpForm () {
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-        <View style={styles.iconWrapper}>
+        {/* <View style={styles.iconWrapper}>
           <Icon />
-        </View>
+        </View> */}
         <View style={styles.formWrapper}>
           <Text style={styles.title}>Thông tin cơ bản</Text>
           <TextInput
@@ -197,6 +197,8 @@ export default function SignUpForm () {
           <View style={styles.logoImage}>
             <Logo />
           </View>
+        </View>
+        <View style={styles.lowerImage}>
           <Icon />
         </View>
       </ImageBackground>
@@ -215,15 +217,13 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%'
   },
-  iconWrapper: {
-    flex: 1,
-    alignItems: 'flex-end',
-    marginRight: -50
-  },
   formWrapper: {
-    flex: 3,
+    flex: 4,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: 100,
+    elevation: 2,
+    zIndex: 2
   },
   logoWrapper: {
     flex: 0.5,
@@ -231,13 +231,16 @@ const styles = StyleSheet.create({
   },
   footer: {
     flex: 1,
+    // flexDirection: 'row',
     marginTop: 10,
     justifyContent: 'center',
     alignItems: 'center'
   },
   logoImage: {
     resizeMode: 'contain',
-    height: '15%'
+    height: '15%',
+    elevation: 2,
+    zIndex: 2
   },
   iconImage: {
     alignSelf: 'flex-start',
@@ -245,12 +248,12 @@ const styles = StyleSheet.create({
   },
   textInput: {
     color: '#707070',
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: '500',
     width: '80%',
     height: 50,
     backgroundColor: '#fff',
-    borderRadius: 17,
+    borderRadius: 10,
     paddingHorizontal: 10,
     marginVertical: 5
   },
@@ -262,7 +265,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     height: 50,
     width: '80%',
-    borderRadius: 17
+    borderRadius: 10
   },
   radioButtonsListWrapper: {
     width: '80%',
@@ -282,7 +285,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 200,
-    height: 35,
+    height: 55,
     borderRadius: 17,
     marginTop: 20,
     backgroundColor: 'rgb(21, 54, 195)',
@@ -296,7 +299,7 @@ const styles = StyleSheet.create({
     fontWeight: '500'
   },
   description: {
-    fontSize: 18,
+    fontSize: 15,
     color: '#707070',
     fontWeight: '500'
   },
@@ -305,5 +308,12 @@ const styles = StyleSheet.create({
     color: 'rgb(21, 54, 195)',
     fontWeight: 'bold',
     fontSize: 24
+  },
+  lowerImage: {
+    position: 'absolute',
+    bottom: -15,
+    left: -15,
+    elevation: 1,
+    zIndex: 1
   }
 })

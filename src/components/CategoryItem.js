@@ -92,6 +92,11 @@ const styles = StyleSheet.create({
     color: '#EF2741',
     fontWeight: 'bold',
     fontSize: 11
+  },
+  flexRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 5
   }
 })
 export default CategoryItem
