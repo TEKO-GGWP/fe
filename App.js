@@ -5,7 +5,7 @@ import SignUp from './src/containers/SignUp'
 import Home from './src/containers/Home'
 export default function App () {
   /* eslint-disable no-unused-vars */
-  const [isAuthorized, setIsAuthorized] = useState(false)
+  const [isAuthorized, setIsAuthorized] = useState(true)
   /* eslint-enable no-unused-vars */
   return (
     <SafeAreaView style={styles.container}>
