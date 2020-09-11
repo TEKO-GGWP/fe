@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import PhoneInput from 'react-native-phone-input'
 import backgroundImage from '../../assets/background.png'
-import Icon from '../components/Common/Icon'
-import Logo from '../components/Common/Logo'
+import Icon from '../components/common/Icon'
+import Logo from '../components/common/Logo'
 import {
   SafeAreaView,
   StyleSheet,
@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
   },
   phoneInput: {
     width: 300,
-    height: 55,
-    borderRadius: 15,
+    height: 50,
+    borderRadius: 5,
     backgroundColor: '#fff',
     paddingHorizontal: 10
   },
@@ -101,8 +101,8 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 300,
-    height: 55,
-    borderRadius: 15,
+    height: 50,
+    borderRadius: 25,
     marginTop: 20,
     backgroundColor: 'rgb(21, 54, 195)',
     alignItems: 'center',

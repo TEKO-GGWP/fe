@@ -1,7 +1,7 @@
-import React from 'react'
-import { TextInput } from 'react-native-paper'
+import React from './node_modules/react'
+import { TextInput } from './node_modules/react-native-paper'
 import { View, StyleSheet } from 'react-native'
-import { Feather } from '@expo/vector-icons'
+import { Feather } from './node_modules/@expo/vector-icons'
 
 export default function SearchBar () {
   return (

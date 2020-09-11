@@ -1,12 +1,12 @@
 import React from 'react'
 import { SafeAreaView, StyleSheet, ScrollView } from 'react-native'
-import CarouselSlide from '../components/Detail/CarouselSlide'
-import Specifications from '../components/Detail/Specifications'
-import Promotions from '../components/Detail/Promotions'
+import CarouselSlide from '../components/detail/CarouselSlide'
+import Specifications from '../components/detail/Specifications'
+import Promotions from '../components/detail/Promotions'
 
 import * as SAMPLE_PRODUCTS from '../data/sample_detail_products.json'
-import PoliciesAndServices from '../components/Detail/PoliciesAndServices'
-import SameBrandList from '../components/Detail/SameBrandList'
+import PoliciesAndServices from '../components/detail/PoliciesAndServices'
+import SameBrandList from '../components/detail/SameBrandList'
 const DATA = [
   {
     name: 'Image 1',

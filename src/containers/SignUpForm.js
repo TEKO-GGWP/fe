@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import backgroundImage from '../../assets/background.png'
-import Icon from '../components/Common/Icon'
-import Logo from '../components/Common/Logo'
+import Icon from '../components/common/Icon'
+import Logo from '../components/common/Logo'
 import AsyncStorage from '@react-native-community/async-storage'
 import {
   ImageBackground,
@@ -303,8 +303,8 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 200,
-    height: 55,
-    borderRadius: 17,
+    height: 50,
+    borderRadius: 25,
     marginTop: 20,
     backgroundColor: 'rgb(21, 54, 195)',
     alignItems: 'center',

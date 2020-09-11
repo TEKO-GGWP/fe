@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import SearchBar from '../components/Search/SearchBar'
-import History from '../components/History'
+import SearchBar from '../components/search/SearchBar'
+import History from '../components/search/History'
 import Catalogue from '../components/Catalogue'
 import CategoryItem from '../components/CategoryItem'
 import {

@@ -1,7 +1,7 @@
 import React from 'react'
 import backgroundImage from '../../assets/background.png'
-import Icon from '../components/Common/Icon'
-import Logo from '../components/Common/Logo'
+import Icon from '../components/common/Icon'
+import Logo from '../components/common/Logo'
 import {
   SafeAreaView,
   StyleSheet,

@@ -2,8 +2,8 @@ import React from 'react'
 import IntroItem from '../components/IntroItem'
 import Interest from '../components/Interest'
 import Category from '../components/Category'
-import Icon from '../components/Common/Icon'
-import Logo from '../components/Common/Logo'
+import Icon from '../components/common/Icon'
+import Logo from '../components/common/Logo'
 import {
   FlatList,
   SafeAreaView,

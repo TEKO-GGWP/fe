@@ -7,8 +7,7 @@ import {
   StyleSheet
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
-
-import { history } from '../data/search_catalogue'
+import { history } from '../../data/search_catalogue'
 
 const HistoryItem = (item) => {
   const { search, id } = item.item
