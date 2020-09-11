@@ -1,5 +1,5 @@
-import React from 'react'
-import { SvgXml } from 'react-native-svg'
+import React from './node_modules/react'
+import { SvgXml } from './node_modules/react-native-svg'
 
 export default function Logo () {
   const xml = `

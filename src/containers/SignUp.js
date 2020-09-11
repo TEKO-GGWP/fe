@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import PhoneInput from 'react-native-phone-input'
 import backgroundImage from '../../assets/background.png'
-import Icon from '../components/Icon'
-import Logo from '../components/Logo'
+import Icon from '../components/Common/Icon'
+import Logo from '../components/Common/Logo'
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,12 +11,19 @@ import {
   TouchableOpacity,
   Text
 } from 'react-native'
+import { connect } from 'react-redux'
+import { actAddPhoneNumber } from '../actions'
 
-export default function SignUp () {
+function SignUp (props) {
   const [phoneNumber, setPhoneNumber] = useState('')
   /* eslint-disable no-unused-vars */
   const [countryCode, setCountryCode] = useState('')
   /* eslint-enable no-unused-vars */
+
+  const onNavigatingOTPScreen = () => {
+    props.onAddPhoneNumber(phoneNumber)
+    props.navigation.navigate('ConfirmOTP')
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -36,7 +43,7 @@ export default function SignUp () {
             buttonTextStyle={styles.countryPickStyle}
             autoFormat={true}
           />
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={onNavigatingOTPScreen}>
             <Text style={styles.text}>Tiếp tục</Text>
           </TouchableOpacity>
         </View>
@@ -120,3 +127,19 @@ const styles = StyleSheet.create({
     zIndex: 1
   }
 })
+
+const mapStateToProps = state => {
+  return {
+    userInformation: state.userInformation
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onAddPhoneNumber: (phoneNumber) => {
+      dispatch(actAddPhoneNumber(phoneNumber))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

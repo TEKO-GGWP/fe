@@ -2,8 +2,8 @@ import React from 'react'
 import IntroItem from '../components/IntroItem'
 import Interest from '../components/Interest'
 import Category from '../components/Category'
-import Icon from '../components/Icon'
-import Logo from '../components/Logo'
+import Icon from '../components/Common/Icon'
+import Logo from '../components/Common/Logo'
 import {
   FlatList,
   SafeAreaView,
@@ -15,15 +15,19 @@ import {
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { category, introUrl } from '../data/sample'
+import { connect } from 'react-redux'
 
-export default function Home () {
+function Home (props) {
   const handleGoTop = () => {
     this.scroll.scrollTo({
       y: 0,
       animated: true
     })
   }
-
+  const onNavigatingToDetailScreen = (data) => {
+    props.navigation.navigate('Detail')
+  }
+  console.log(props.userInformation)
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -35,7 +39,7 @@ export default function Home () {
             <Logo />
           </View>
           <Text style={styles.subtitle}>
-            Xin chào, Nam!
+            Xin chào, {props.userInformation.name}!
           </Text>
         </View>
         <View style={styles.iconBox}>
@@ -63,12 +67,12 @@ export default function Home () {
       }}>
         <FlatList
           data={introUrl}
-          renderItem={item => <IntroItem item={item.item}/>}
+          renderItem={item => <IntroItem item={item.item} />}
           keyExtractor={item => item.id}
           horizontal={true}
         />
-        <Interest/>
-        {category.map((item) => <Category item={item} key={item.id}/>)}
+        <Interest />
+        {category.map((item) => <Category item={item} key={item.id} onPress={onNavigatingToDetailScreen} />)}
         <TouchableOpacity style={styles.goTopButton} onPress={() => handleGoTop()}>
           <Text style={styles.goTopText}>Quay lại đầu trang</Text>
           <Feather
@@ -153,3 +157,11 @@ const styles = StyleSheet.create({
     marginTop: 20
   }
 })
+
+const mapStateToProps = state => {
+  return {
+    userInformation: state.userInformation
+  }
+}
+
+export default connect(mapStateToProps)(Home)

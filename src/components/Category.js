@@ -4,7 +4,8 @@ import { FlatList, View } from 'react-native'
 import CategoryHeader from './CategoryHeader'
 import CategoryItem from './CategoryItem'
 
-const Category = ({ item, showDiscounted = true }) => {
+const Category = (props) => {
+  const { item, showDiscounted, onPress } = props
   return (
     <View>
       <CategoryHeader
@@ -13,7 +14,7 @@ const Category = ({ item, showDiscounted = true }) => {
       />
       <FlatList
         data={item.item}
-        renderItem={item => <CategoryItem item={item.item} showDiscounted={showDiscounted}/>}
+        renderItem={item => <CategoryItem item={item.item} showDiscounted={showDiscounted} onPress={onPress}/>}
         keyExtractor={item => item.id}
         numColumns={2}
       />

@@ -1,7 +1,7 @@
 import React from 'react'
 import backgroundImage from '../../assets/background.png'
-import Icon from '../components/Icon'
-import Logo from '../components/Logo'
+import Icon from '../components/Common/Icon'
+import Logo from '../components/Common/Logo'
 import {
   SafeAreaView,
   StyleSheet,
@@ -13,11 +13,9 @@ import {
 import { TextInput } from 'react-native-paper'
 
 const OPTDigit = () => {
-  var digitContainer = []
-
-  for (let i = 0; i < 4; i++) {
-    digitContainer.push(
-      <View style={styles.digit}>
+  const digitContainer = Array.from(Array(4).keys()).map(index => {
+    return (
+      <View style={styles.digit} key={index}>
         <TextInput
           style={styles.digitInput}
           keyboardType="numeric"
@@ -25,8 +23,7 @@ const OPTDigit = () => {
         />
       </View>
     )
-  }
-
+  })
   return (
     <View style={styles.digitContainer}>
       {digitContainer}
@@ -34,20 +31,20 @@ const OPTDigit = () => {
   )
 }
 
-export default function ConfirmOTP () {
+export default function ConfirmOTP (props) {
+  const onGoingToSignUpFormScreen = () => {
+    props.navigation.navigate('SignUpForm')
+  }
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Xác minh mã OTP</Text>
         </View>
-
         <Text style={styles.subTitle}>Vui lòng nhập mã số đã được gửi qua SMS</Text>
-
         <OPTDigit />
-
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.nextButton}>
+          <TouchableOpacity style={styles.nextButton} onPress={onGoingToSignUpFormScreen}>
             <Text style={styles.text}>Tiếp tục</Text>
           </TouchableOpacity>
         </View>

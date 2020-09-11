@@ -4,22 +4,26 @@ import { Feather } from '@expo/vector-icons'
 
 import CategoryGift from './CategoryGift'
 import CategoryPrice from './CategoryPrice'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
-const CategoryItem = ({ item, showDiscounted = true }) => {
+const CategoryItem = (props) => {
+  const { item, onPress, showDiscounted } = props
   return (
     <View style={styles.categoryItem}>
-      <View style={styles.itemImageContainer}>
-        <Image
-          source={item.image}
-          style={styles.itemImage}
-        />
-      </View>
-      <Text
-        numberOfLines={2}
-        style={styles.itemName}
-      >
-        {item.name}
-      </Text>
+      <TouchableOpacity onPress={onPress}>
+        <View style={styles.itemImageContainer}>
+          <Image
+            source={item.image}
+            style={styles.itemImage}
+          />
+        </View>
+        <Text
+          numberOfLines={2}
+          style={styles.itemName}
+        >
+          {item.name}
+        </Text>
+      </TouchableOpacity>
       <View style={styles.priceContainer}>
         <CategoryPrice
           price={item.price}

@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import backgroundImage from '../../assets/background.png'
+import Icon from '../components/Common/Icon'
+import Logo from '../components/Common/Logo'
+import AsyncStorage from '@react-native-community/async-storage'
 import {
   ImageBackground,
   Picker,
@@ -9,14 +13,14 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-
-import backgroundImage from '../../assets/background.png'
+// import {Picker} from '@react-native-community/picker';
 import { RadioButton } from 'react-native-paper'
 import * as VIETNAM_DATA from '../data/vietnam_provinces_cities.json'
-import Icon from '../components/Icon'
-import Logo from '../components/Logo'
 
-export default function SignUpForm () {
+import { connect } from 'react-redux'
+import { actAddUserInformation } from '../actions'
+
+function SignUpForm (props) {
   const [userProfile, setUserProfile] = useState({
     name: '',
     email: '',
@@ -27,6 +31,15 @@ export default function SignUpForm () {
   })
   const [cities, setCities] = useState([])
   const [districts, setDistricts] = useState([])
+
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('@isAuthorized', value)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   useEffect(() => {
     const tempCities = []
     Object.keys(VIETNAM_DATA).map(key => {
@@ -52,11 +65,16 @@ export default function SignUpForm () {
     })
     setDistricts(tempDistricts)
   }
-  // const changeGenderProfile = (isMale) => {
-  //   setUserProfile({ ...userProfile, isMale })
-  // }
-  // const sendUserProfile = () => {}
-
+  /* eslint-disable no-unused-vars */
+  const changeGenderProfile = (isMale) => {
+    setUserProfile({ ...userProfile, isMale })
+  }
+  const sendUserProfile = () => {
+    props.onAddUserInformation(userProfile)
+    storeData(true)
+    props.navigation.navigate('Home')
+  }
+  /* eslint-enable no-unused-vars */
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
@@ -317,3 +335,19 @@ const styles = StyleSheet.create({
     zIndex: 1
   }
 })
+
+const mapStateToProps = state => {
+  return {
+    userInformation: state.userInformation
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onAddUserInformation: (userInformation) => {
+      dispatch(actAddUserInformation(userInformation))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm)

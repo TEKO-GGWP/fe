@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import SearchBar from '../components/Search/SearchBar'
+import History from '../components/History'
+import Catalogue from '../components/Catalogue'
+import CategoryItem from '../components/CategoryItem'
 import {
   SafeAreaView,
   View,
@@ -7,11 +11,7 @@ import {
   StyleSheet
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
-import SearchBar from '../components/SearchBar'
-import History from '../components/History'
-import Catalogue from '../components/Catalogue'
 import { category } from '../data/sample'
-import CategoryItem from '../components/CategoryItem'
 
 export default function Search () {
   const [suggestList, setSuggestList] = useState([])

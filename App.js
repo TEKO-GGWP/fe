@@ -1,22 +1,22 @@
+import thunk from 'redux-thunk'
 import React, { useState } from 'react'
-import { SafeAreaView, StyleSheet } from 'react-native'
 // import SignUpForm from './src/containers/SignUpForm'
-import SignUp from './src/containers/SignUp'
-import Home from './src/containers/Home'
+// import SignUp from './src/containers/SignUp'
+// import Home from './src/containers/Home'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import rootReducer from './src/reducers'
+import MainScreen from './src/containers/MainScreen'
+
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk))
 
 export default function App () {
   /* eslint-disable no-unused-vars */
   const [isAuthorized, setIsAuthorized] = useState(true)
   /* eslint-enable no-unused-vars */
   return (
-    <SafeAreaView style={styles.container}>
-      {isAuthorized ? <Home /> : <SignUp />}
-    </SafeAreaView>
+    <Provider store={store}>
+      <MainScreen />
+    </Provider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-})
