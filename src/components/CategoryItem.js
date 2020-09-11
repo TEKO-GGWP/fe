@@ -7,7 +7,7 @@ import CategoryPrice from './CategoryPrice'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const CategoryItem = (props) => {
-  const { item, onPress } = props
+  const { item, onPress, showDiscounted } = props
   return (
     <View style={styles.categoryItem}>
       <TouchableOpacity onPress={onPress}>
@@ -34,7 +34,7 @@ const CategoryItem = (props) => {
           color="lightgreen"
         />
       </View>
-      <View style={styles.flexRow}>
+      <View style={[styles.flexRow, { display: showDiscounted ? 'flex' : 'none' }]}>
         <View>
           <Text style={{ fontSize: 11 }}>
             Giảm ngay
@@ -54,7 +54,9 @@ const CategoryItem = (props) => {
           />
         </View>
       </View>
-      {item.gifts.length > 0 && <CategoryGift gifts={item.gifts} />}
+      <View style={{ display: showDiscounted ? 'flex' : 'none' }}>
+        {item.gifts.length > 0 && <CategoryGift gifts={item.gifts}/>}
+      </View>
     </View>
   )
 }
@@ -96,6 +98,11 @@ const styles = StyleSheet.create({
     color: '#EF2741',
     fontWeight: 'bold',
     fontSize: 11
+  },
+  flexRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 5
   }
 })
 export default CategoryItem

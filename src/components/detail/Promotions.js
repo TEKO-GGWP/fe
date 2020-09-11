@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 // import Carousel from 'react-native-snap-carousel'
 // import * as SAMPLE_PRODUCT from '../../sample_detail_product.json'
-import Promotion from '../detail/Promotion'
+import Promotion from './Promotion'
 /* eslint-disable react/prop-types */
 export default function Promotions (props) {
   const { promotions } = props.data

@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
+import PhoneInput from 'react-native-phone-input'
+import backgroundImage from '../../assets/background.png'
+import Icon from '../components/common/Icon'
+import Logo from '../components/common/Logo'
 import {
   SafeAreaView,
   StyleSheet,
   ImageBackground,
-  Image,
   View,
   TouchableOpacity,
   Text
 } from 'react-native'
-import PhoneInput from 'react-native-phone-input'
-
-import backgroundImage from '../../assets/background.png'
-import phongvuIcon from '../../assets/pv-icon.png'
-import phongvuLogo from '../../assets/pv-logo.png'
 import { connect } from 'react-redux'
 import { actAddPhoneNumber } from '../actions'
 
@@ -30,11 +28,8 @@ function SignUp (props) {
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-        <View style={styles.iconWrapper}>
-          <Image source={phongvuIcon} />
-        </View>
         <View style={styles.logoWrapper}>
-          <Image source={phongvuLogo} />
+          <Logo />
         </View>
         <View style={styles.formWrapper}>
           <PhoneInput
@@ -52,8 +47,11 @@ function SignUp (props) {
             <Text style={styles.text}>Tiếp tục</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.footer}>
-          <Image source={phongvuIcon} />
+        <View style={styles.upperImage}>
+          <Icon />
+        </View>
+        <View style={styles.lowerImage}>
+          <Icon />
         </View>
       </ImageBackground>
     </SafeAreaView>
@@ -71,25 +69,29 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%'
   },
-  iconWrapper: {
-    flex: 1,
-    alignItems: 'flex-end',
-    marginRight: -50
-  },
   logoWrapper: {
-    flex: 1,
+    flex: 1 / 4,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'flex-end',
+    transform: [{
+      scale: 2
+    }],
+    marginBottom: 100,
+    elevation: 2,
+    zIndex: 2
   },
   formWrapper: {
-    flex: 2,
+    flex: 3 / 4,
+    marginTop: 20,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'flex-start',
+    elevation: 2,
+    zIndex: 2
   },
   phoneInput: {
-    width: 200,
-    height: 35,
-    borderRadius: 17,
+    width: 300,
+    height: 50,
+    borderRadius: 5,
     backgroundColor: '#fff',
     paddingHorizontal: 10
   },
@@ -98,9 +100,9 @@ const styles = StyleSheet.create({
     borderRightColor: '#000'
   },
   button: {
-    width: 200,
-    height: 35,
-    borderRadius: 17,
+    width: 300,
+    height: 50,
+    borderRadius: 25,
     marginTop: 20,
     backgroundColor: 'rgb(21, 54, 195)',
     alignItems: 'center',
@@ -112,10 +114,17 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '500'
   },
-  footer: {
-    flex: 4,
-    justifyContent: 'flex-end',
-    marginBottom: -50
+  upperImage: {
+    position: 'absolute',
+    top: -15,
+    right: -25
+  },
+  lowerImage: {
+    position: 'absolute',
+    bottom: -15,
+    left: -15,
+    elevation: 1,
+    zIndex: 1
   }
 })
 

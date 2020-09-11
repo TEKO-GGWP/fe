@@ -5,7 +5,7 @@ import CategoryHeader from './CategoryHeader'
 import CategoryItem from './CategoryItem'
 
 const Category = (props) => {
-  const { item, onPress } = props
+  const { item, showDiscounted, onPress } = props
   return (
     <View>
       <CategoryHeader
@@ -14,7 +14,7 @@ const Category = (props) => {
       />
       <FlatList
         data={item.item}
-        renderItem={item => <CategoryItem item={item.item} onPress={onPress} />}
+        renderItem={item => <CategoryItem item={item.item} showDiscounted={showDiscounted} onPress={onPress}/>}
         keyExtractor={item => item.id}
         numColumns={2}
       />

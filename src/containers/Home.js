@@ -1,7 +1,11 @@
 import React from 'react'
+import IntroItem from '../components/IntroItem'
+import Interest from '../components/Interest'
+import Category from '../components/Category'
+import Icon from '../components/common/Icon'
+import Logo from '../components/common/Logo'
 import {
   FlatList,
-  Image,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -10,15 +14,7 @@ import {
   View
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
-
-import IntroItem from '../components/IntroItem'
-import Interest from '../components/Interest'
-import Category from '../components/Category'
-
 import { category, introUrl } from '../data/sample'
-
-import phongvuIcon from '../../assets/pv-icon.svg'
-import phongvuLogo from '../../assets/pv-logo.svg'
 import { connect } from 'react-redux'
 
 function Home (props) {
@@ -39,30 +35,31 @@ function Home (props) {
           zIndex: 2,
           elevation: 2
         }}>
-          <Image
-            source={phongvuLogo}
-            style={styles.logo}
-          />
+          <View style={styles.logo}>
+            <Logo />
+          </View>
           <Text style={styles.subtitle}>
             Xin chào, {props.userInformation.name}!
           </Text>
         </View>
-        <TouchableOpacity >
-          <Feather
-            name='search'
-            size={25}
-            color="#1434C3"
-            style={styles.headerIcon}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity >
-          <Feather
-            name='shopping-cart'
-            size={25}
-            color="#1434C3"
-            style={styles.headerIcon}
-          />
-        </TouchableOpacity>
+        <View style={styles.iconBox}>
+          <TouchableOpacity>
+            <Feather
+              name='search'
+              size={25}
+              color="#1434C3"
+              style={styles.headerIcon}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Feather
+              name='shopping-cart'
+              size={25}
+              color="#1434C3"
+              style={styles.headerIcon}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
 
       <ScrollView style={styles.body} ref={(c) => {
@@ -85,10 +82,9 @@ function Home (props) {
           />
         </TouchableOpacity>
         <View style={styles.footer}>
-          <Image
-            source={phongvuLogo}
-            style={styles.logo}
-          />
+          <View style={styles.logo}>
+            <Logo />
+          </View>
           <Text style={styles.footerText}>
             © 1997 - 2020 Công Ty Cổ Phần Thương Mại - Dịch Vụ Phong Vũ / GPĐKKD số
             0304998358 do Sở KHĐT TP.HCM cấp
@@ -97,7 +93,7 @@ function Home (props) {
         </View>
       </ScrollView>
       <View style={styles.upperImage}>
-        <Image source={phongvuIcon} />
+        <Icon />
       </View>
     </SafeAreaView>
   )
@@ -117,20 +113,18 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginTop: 15,
-    marginBottom: 5,
-    transform: [
-      { scale: 0.8 },
-      { translateX: -30 }
-    ]
+    marginBottom: 5
+  },
+  iconBox: {
+    flexDirection: 'row'
   },
   headerIcon: {
-    marginTop: 15
-  },
-  searchInput: {
-    backgroundColor: 'transparent'
+    marginTop: 15,
+    marginLeft: 20
   },
   body: {
-    flex: 8 / 9
+    flex: 8 / 9,
+    elevation: 2
   },
   upperImage: {
     position: 'absolute',

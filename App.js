@@ -1,5 +1,8 @@
 import thunk from 'redux-thunk'
 import React, { useState } from 'react'
+// import SignUpForm from './src/containers/SignUpForm'
+// import SignUp from './src/containers/SignUp'
+// import Home from './src/containers/Home'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './src/reducers'
