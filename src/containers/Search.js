@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   SafeAreaView,
   View,
@@ -10,8 +10,38 @@ import { Feather } from '@expo/vector-icons'
 import SearchBar from '../components/SearchBar'
 import History from '../components/History'
 import Catalogue from '../components/Catalogue'
+import { category } from '../data/sample'
+import CategoryItem from '../components/CategoryItem'
 
 export default function Search () {
+  const [suggestList, setSuggestList] = useState([])
+  const [suggestPage, setSuggestPage] = useState(0)
+
+  useEffect(() => {
+    getSuggestList(0)
+  }, [])
+
+  const getSuggestList = (start) => {
+    const arr = []
+    for (let i = start; i < start + 2; i++) {
+      console.log(i)
+      arr.push(category[0].item[i])
+    }
+    setSuggestList(arr)
+  }
+
+  const handleNextSuggestPage = () => {
+    const start = (suggestPage + 1) * 2
+    getSuggestList(start)
+    setSuggestPage(suggestPage + 1)
+  }
+
+  const handlePreviousSuggestPage = () => {
+    const start = (suggestPage - 1) * 2
+    getSuggestList(start)
+    setSuggestPage(suggestPage - 1)
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -35,14 +65,29 @@ export default function Search () {
         <View style={styles.suggest}>
           <Text style={styles.title}>Gợi ý dành riêng cho bạn</Text>
           <View style={styles.suggestBody}>
-            <Feather
-              name="chevron-left"
-              size={40}
-            />
-            <Feather
-              name="chevron-right"
-              size={40}
-            />
+            <TouchableOpacity
+              onPress={() => handlePreviousSuggestPage()}
+              delayPressIn={1500}
+            >
+              <Feather
+                name="chevron-left"
+                size={40}
+                style={ suggestPage < 1 ? styles.hide : '' }
+              />
+            </TouchableOpacity>
+            <View style={{ flexDirection: 'row', width: '75%' }}>
+              {suggestList.map((item, i) => item ? <CategoryItem key={i} item={item} showDiscounted={false} width='50%' /> : null)}
+            </View>
+            <TouchableOpacity
+              onPress={() => handleNextSuggestPage()}
+              delayPressIn={1500}
+            >
+              <Feather
+                name="chevron-right"
+                size={40}
+                style={ suggestPage > 1 ? styles.hide : '' }
+              />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -55,6 +100,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column'
   },
+  hide: {
+    opacity: 0,
+    height: 0
+  },
   title: {
     color: '#1434C3',
     fontSize: 16,
@@ -65,7 +114,7 @@ const styles = StyleSheet.create({
     fontWeight: '200'
   },
   header: {
-    flex: 1 / 10,
+    flex: 1 / 11,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -74,7 +123,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   body: {
-    flex: 8 / 10,
+    flex: 9 / 11,
     marginLeft: 10,
     marginRight: 10
   },
@@ -82,10 +131,10 @@ const styles = StyleSheet.create({
     flex: 2 / 7
   },
   catalogue: {
-    flex: 2 / 7
+    flex: 1 / 7
   },
   suggest: {
-    flex: 3 / 7
+    flex: 4 / 7
   },
   historyHeader: {
     flexDirection: 'row',

@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     fontWeight: '200'
   },
   searchBar: {
-    flex: 1 / 10,
+    flex: 1 / 11,
     borderRadius: 10,
     flexDirection: 'row',
     alignItems: 'center',

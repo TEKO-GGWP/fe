@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons'
 import CategoryGift from './CategoryGift'
 import CategoryPrice from './CategoryPrice'
 
-const CategoryItem = ({ item }) => {
+const CategoryItem = ({ item, showDiscounted = true }) => {
   return (
     <View style={styles.categoryItem}>
       <View style={styles.itemImageContainer}>
@@ -30,7 +30,7 @@ const CategoryItem = ({ item }) => {
           color="lightgreen"
         />
       </View>
-      <View style={styles.flexRow}>
+      <View style={[styles.flexRow, { display: showDiscounted ? 'flex' : 'none' }]}>
         <View>
           <Text style={{ fontSize: 11 }}>
             Giảm ngay
@@ -50,7 +50,9 @@ const CategoryItem = ({ item }) => {
           />
         </View>
       </View>
-      {item.gifts.length > 0 && <CategoryGift gifts={item.gifts}/>}
+      <View style={{ display: showDiscounted ? 'flex' : 'none' }}>
+        {item.gifts.length > 0 && <CategoryGift gifts={item.gifts}/>}
+      </View>
     </View>
   )
 }
