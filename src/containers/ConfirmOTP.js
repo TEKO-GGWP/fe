@@ -15,11 +15,9 @@ import phongvuLogo from '../../assets/pv-logo.png'
 import { TextInput } from 'react-native-paper'
 
 const OPTDigit = () => {
-  var digitContainer = []
-
-  for (let i = 0; i < 4; i++) {
-    digitContainer.push(
-      <View style={styles.digit} key={i}>
+  const digitContainer = Array.from(Array(4).keys()).map(index => {
+    return (
+      <View style={styles.digit} key={index}>
         <TextInput
           style={styles.digitInput}
           keyboardType="numeric"
@@ -27,8 +25,7 @@ const OPTDigit = () => {
         />
       </View>
     )
-  }
-
+  })
   return (
     <View style={styles.digitContainer}>
       {digitContainer}
@@ -46,11 +43,8 @@ export default function ConfirmOTP (props) {
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Xác minh mã OTP</Text>
         </View>
-
         <Text style={styles.subTitle}>Vui lòng nhập mã số đã được gửi qua SMS</Text>
-
         <OPTDigit />
-
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.nextButton} onPress={onGoingToSignUpFormScreen}>
             <Text style={styles.text}>Tiếp tục</Text>

@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView, StyleSheet } from 'react-native'
-// import SignUpForm from './SignUpForm'
+import { createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer } from '@react-navigation/native'
+import { connect } from 'react-redux'
+import AsyncStorage from '@react-native-community/async-storage'
+
 import SignUp from './SignUp'
 import SignUpForm from './SignUpForm'
 import Home from './Home'
 import Detail from './Detail'
 import ConfirmOTP from './ConfirmOTP'
-import { createStackNavigator } from '@react-navigation/stack'
-import { NavigationContainer } from '@react-navigation/native'
-import { connect } from 'react-redux'
-import AsyncStorage from '@react-native-community/async-storage'
 
 const Stack = createStackNavigator()
 const MainScreen = (props) => {
@@ -28,17 +28,19 @@ const MainScreen = (props) => {
     }
   }
   useEffect(() => {
-    getData()
+    getData().then(r => console.log('Get isAuthorized data successful')).catch(e => console.log(e))
   }, [])
+
   return (
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator>
-          {isAuthorized ? <Stack.Screen name="Home" component={Home} /> : <Stack.Screen name="SignUp" component={SignUp} />}
-          <Stack.Screen name="ConfirmOTP" component={ConfirmOTP} />
-          <Stack.Screen name="SignUpForm" component={SignUpForm} />
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Detail" component={Detail} />
+          {isAuthorized ? <Stack.Screen name="Home" component={Home}/>
+            : <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }}/>}
+          <Stack.Screen name="ConfirmOTP" component={ConfirmOTP} options={{ headerShown: false }}/>
+          <Stack.Screen name="SignUpForm" component={SignUpForm} options={{ headerShown: false }}/>
+          <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
+          <Stack.Screen name="Detail" component={Detail} options={{ headerShown: false }}/>
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

@@ -11,8 +11,8 @@ import {
 import PhoneInput from 'react-native-phone-input'
 
 import backgroundImage from '../../assets/background.png'
-import phongvuIcon from '../../assets/pv-icon.svg'
-import phongvuLogo from '../../assets/pv-logo.svg'
+import phongvuIcon from '../../assets/pv-icon.png'
+import phongvuLogo from '../../assets/pv-logo.png'
 import { connect } from 'react-redux'
 import { actAddPhoneNumber } from '../actions'
 
@@ -26,6 +26,7 @@ function SignUp (props) {
     props.onAddPhoneNumber(phoneNumber)
     props.navigation.navigate('ConfirmOTP')
   }
+
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
