@@ -1,6 +1,6 @@
-import React from './node_modules/react'
+import React from 'react'
 import { StyleSheet, Image, View, Text } from 'react-native'
-import Carousel from './node_modules/react-native-snap-carousel'
+import Carousel from 'react-native-snap-carousel'
 import * as SAMPLE_PRODUCTS from '../../data/sample_detail_products.json'
 export default function CarouselSlide (props) {
   /* eslint-disable react/prop-types */

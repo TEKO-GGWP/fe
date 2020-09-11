@@ -1,4 +1,4 @@
-import React from './node_modules/react'
+import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 // import Carousel from 'react-native-snap-carousel'
 // import * as SAMPLE_PRODUCT from '../../sample_detail_product.json'
