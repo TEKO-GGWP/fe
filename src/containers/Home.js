@@ -70,6 +70,7 @@ function Home (props) {
           renderItem={item => <IntroItem item={item.item} />}
           keyExtractor={item => item.id}
           horizontal={true}
+          showsHorizontalScrollIndicator={false}
         />
         <Interest />
         {category.map((item) => <Category item={item} key={item.id} onPress={onNavigatingToDetailScreen} />)}

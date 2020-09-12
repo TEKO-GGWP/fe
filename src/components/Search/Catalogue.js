@@ -7,7 +7,7 @@ import {
   ImageBackground
 } from 'react-native'
 
-import { DATA } from '../data/search_catalogue'
+import { DATA } from '../../data/search_catalogue'
 
 const CatalogueItem = (item) => {
   const { name, img } = item.item
@@ -34,6 +34,7 @@ export default function Catalogue () {
         renderItem={item => <CatalogueItem item={item.item} />}
         keyExtractor={item => `${item.id}`}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
       />
     </View>
   )

@@ -11,7 +11,7 @@ const CategoryHeader = (props) => {
       </Text>
       <TouchableOpacity>
         <Text style={styles.seeMore}>
-          Xem thêm
+          {title !== 'Kết quả tìm kiếm' ? 'Xem thêm' : ''}
         </Text>
       </TouchableOpacity>
     </View>
@@ -22,13 +22,13 @@ const styles = StyleSheet.create({
   title: {
     color: '#1434C3',
     fontWeight: 'bold',
-    fontSize: 20,
-    marginTop: 50,
-    width: '60%',
+    fontSize: 18,
+    marginTop: 30,
+    width: '65%',
     textTransform: 'uppercase'
   },
   seeMore: {
-    marginTop: 50,
+    marginTop: 30,
     fontSize: 20,
     textTransform: 'uppercase',
     color: '#1434C3',
