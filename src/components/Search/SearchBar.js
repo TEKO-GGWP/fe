@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     flex: 1 / 11,
-    borderRadius: 10,
+    borderRadius: 5,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -64,12 +64,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     shadowColor: '#000',
     shadowOffset: {
-      width: 0,
-      height: 2
+      width: 2,
+      height: 5
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
+    zIndex: 10,
     elevation: 5,
     height: 40
   },
