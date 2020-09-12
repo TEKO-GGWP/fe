@@ -1,9 +1,12 @@
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
-import { Feather } from '@expo/vector-icons'
-
 import CategoryGift from './CategoryGift'
 import CategoryPrice from './CategoryPrice'
+import {
+  Image,
+  StyleSheet,
+  Text, View
+} from 'react-native'
+import { Feather } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const CategoryItem = (props) => {

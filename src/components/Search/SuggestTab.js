@@ -32,7 +32,7 @@ const data = [
 export default function SuggestTab (props) {
   const { handleSearch } = props
 
-  const Item = (props) => {
+  const SuggestTabItem = (props) => {
     const { name } = props
 
     return (
@@ -49,7 +49,7 @@ export default function SuggestTab (props) {
     <View style={styles.suggestTabContainer}>
       <FlatList
         data={data}
-        renderItem={item => <Item name={item.item.name}/>}
+        renderItem={item => <SuggestTabItem name={item.item.name}/>}
         keyExtractor={item => `${item.id}`}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   suggestTab: {
+    marginRight: 5,
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 10,
