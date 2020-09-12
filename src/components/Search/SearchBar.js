@@ -1,9 +1,15 @@
-import React from './node_modules/react'
-import { TextInput } from './node_modules/react-native-paper'
+import React from 'react'
+import { TextInput } from 'react-native-paper'
 import { View, StyleSheet } from 'react-native'
-import { Feather } from './node_modules/@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 
-export default function SearchBar () {
+export default function SearchBar (props) {
+  const { search, handleSearch } = props
+
+  const handleRemoveSearchAll = () => {
+    handleSearch('')
+  }
+
   return (
     <View style={styles.searchBar}>
       <TextInput
@@ -18,13 +24,24 @@ export default function SearchBar () {
         underlineColorAndroid='white'
         autoCorrect={false}
         spellCheck={false}
+        onChangeText={handleSearch}
+        value={search}
       />
-      <Feather
-        name='search'
-        size={20}
-        color="#1434C3"
-        style={styles.searchIcon}
-      />
+      {search
+        ? <Feather
+          name='x'
+          size={20}
+          color="#1434C3"
+          style={styles.searchIcon}
+          onPress={() => handleRemoveSearchAll()}
+        />
+        : <Feather
+          name='search'
+          size={20}
+          color="#1434C3"
+          style={styles.searchIcon}
+        />
+      }
     </View>
   )
 }

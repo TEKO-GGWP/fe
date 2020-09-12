@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   itemImage: {
     flex: 1,
-    marginTop: 30,
+    marginTop: 15,
     marginLeft: 5,
     marginRight: 5,
     resizeMode: 'cover'

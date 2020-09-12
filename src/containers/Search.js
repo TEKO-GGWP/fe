@@ -1,45 +1,68 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import SearchBar from '../components/search/SearchBar'
 import History from '../components/search/History'
-import Catalogue from '../components/Catalogue'
-import CategoryItem from '../components/CategoryItem'
+import Catalogue from '../components/search/Catalogue'
 import {
   SafeAreaView,
   View,
-  Text,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet, Text
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
-import { category } from '../data/sample'
+import Suggest from '../components/search/Suggest'
+import Category from '../components/Category'
+import SuggestTab from '../components/search/SuggestTab'
+import { heightPercentageToDP } from 'react-native-responsive-screen'
+
+const data = [
+  {
+    name: 'Kết quả tìm kiếm',
+    item: [
+      {
+        id: '1',
+        image: require('../../assets/intro-home.png'),
+        name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
+        price: 17290000,
+        discountRate: 1100000,
+        discountedPrice: 16190000,
+        gifts: [require('../../assets/intro-home.png'), require('../../assets/intro-home.png'), require('../../assets/intro-home.png')]
+      },
+      {
+        id: '2',
+        image: require('../../assets/intro-home.png'),
+        name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
+        price: 17290000,
+        discountRate: 1100000,
+        discountedPrice: 16190000,
+        gifts: [require('../../assets/intro-home.png'), require('../../assets/intro-home.png'), require('../../assets/intro-home.png')]
+      },
+      {
+        id: '3',
+        image: require('../../assets/intro-home.png'),
+        name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
+        price: 17290000,
+        discountRate: 1100000,
+        discountedPrice: 16190000,
+        gifts: [require('../../assets/intro-home.png'), require('../../assets/intro-home.png'), require('../../assets/intro-home.png')]
+      },
+      {
+        id: '4',
+        image: require('../../assets/intro-home.png'),
+        name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
+        price: 15290000,
+        discountRate: 1100000,
+        discountedPrice: 16190000,
+        gifts: [require('../../assets/intro-home.png'), require('../../assets/intro-home.png'), require('../../assets/intro-home.png')]
+      }
+    ]
+  }
+]
 
 export default function Search () {
-  const [suggestList, setSuggestList] = useState([])
-  const [suggestPage, setSuggestPage] = useState(0)
+  const [search, setSearch] = useState('')
 
-  useEffect(() => {
-    getSuggestList(0)
-  }, [])
-
-  const getSuggestList = (start) => {
-    const arr = []
-    for (let i = start; i < start + 2; i++) {
-      console.log(i)
-      arr.push(category[0].item[i])
-    }
-    setSuggestList(arr)
-  }
-
-  const handleNextSuggestPage = () => {
-    const start = (suggestPage + 1) * 2
-    getSuggestList(start)
-    setSuggestPage(suggestPage + 1)
-  }
-
-  const handlePreviousSuggestPage = () => {
-    const start = (suggestPage - 1) * 2
-    getSuggestList(start)
-    setSuggestPage(suggestPage - 1)
+  const handleSearch = (text) => {
+    setSearch(text)
   }
 
   return (
@@ -58,39 +81,21 @@ export default function Search () {
           />
         </TouchableOpacity>
       </View>
-      <SearchBar />
-      <View style={styles.body}>
-        <History />
-        <Catalogue />
-        <View style={styles.suggest}>
-          <Text style={styles.title}>Gợi ý dành riêng cho bạn</Text>
-          <View style={styles.suggestBody}>
-            <TouchableOpacity
-              onPress={() => handlePreviousSuggestPage()}
-              delayPressIn={1500}
-            >
-              <Feather
-                name="chevron-left"
-                size={40}
-                style={ suggestPage < 1 ? styles.hide : '' }
-              />
-            </TouchableOpacity>
-            <View style={{ flexDirection: 'row', width: '75%' }}>
-              {suggestList.map((item, i) => item ? <CategoryItem key={i} item={item} showDiscounted={false} width='50%' /> : null)}
-            </View>
-            <TouchableOpacity
-              onPress={() => handleNextSuggestPage()}
-              delayPressIn={1500}
-            >
-              <Feather
-                name="chevron-right"
-                size={40}
-                style={ suggestPage > 1 ? styles.hide : '' }
-              />
-            </TouchableOpacity>
+      <SearchBar search={search} handleSearch={(text) => handleSearch(text)}/>
+      {search
+        ? <View style={styles.body}>
+          <SuggestTab handleSearch={handleSearch}/>
+          <Text>Có tổng cộng 1000 kết quả tìm kiếm cho Laptop</Text>
+          <View style={{ height: heightPercentageToDP('50%') }}>
+            <Category item={data[0]} showDiscounted={true} />
           </View>
         </View>
-      </View>
+        : <View style={styles.body}>
+          <History />
+          <Catalogue />
+          <Suggest />
+        </View>
+      }
     </SafeAreaView>
   )
 }
@@ -99,10 +104,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column'
-  },
-  hide: {
-    opacity: 0,
-    height: 0
   },
   title: {
     color: '#1434C3',
@@ -127,50 +128,17 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10
   },
-  history: {
-    flex: 2 / 7
-  },
-  catalogue: {
-    flex: 1 / 7
-  },
-  suggest: {
-    flex: 4 / 7
-  },
-  historyHeader: {
+  suggestTabContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 25,
-    marginBottom: 5
+    marginTop: 20
   },
-  historyItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 10,
-    marginBottom: 5,
-    backgroundColor: '#FAFAFA',
-    borderRadius: 3
-  },
-  suggestBody: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  catalogueItem: {
-    width: 100,
-    height: 100,
-    padding: 5,
-    marginTop: 10
-  },
-  catalogueBgr: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'flex-end'
-  },
-  catalogueImg: {
-    borderRadius: 15
-  },
-  catalogueText: {
-    textAlign: 'center',
-    fontSize: 12
+  suggestTab: {
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: '#EBEBEB',
+    alignSelf: 'center',
+    borderRadius: 20
   }
 })

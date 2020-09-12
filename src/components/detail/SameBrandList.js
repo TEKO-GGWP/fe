@@ -32,7 +32,9 @@ export default function SameBrandList (props) {
         data={data}
         renderItem={renderSameBrandItem}
         keyExtractor={(item) => item.id}
-        horizontal={true} />
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+      />
     </View>
   )
 }
