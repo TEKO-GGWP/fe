@@ -13,7 +13,7 @@ import {
   View,
   Text
 } from 'react-native'
-import { Feather } from '@expo/vector-icons'
+// import { Feather } from '@expo/vector-icons'
 
 const DATA = [
   {
@@ -58,13 +58,13 @@ export default function Detail () {
         <SuggestDetail name="Sản phẩm tương tự" data={SAMPLE_PRODUCTS.same_brand_products} />
       </ScrollView>
       <View style={styles.footer}>
-        <View style={[styles.footerItem, styles.footerLeft]}>
+        {/* <View style={[styles.footerItem, styles.footerLeft]}>
           <Feather
             name="shopping-cart"
             size={30}
             color="#627DF5"
           />
-        </View>
+        </View> */}
         <View style={[styles.footerItem, styles.footerRight]}>
           <Text style={styles.buyNow}>Mua ngay</Text>
         </View>
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     right: 0
   },
   footerItem: {
-    width: '50%',
+    width: '100%',
     height: 50,
     alignItems: 'center',
     justifyContent: 'center'
