@@ -74,8 +74,14 @@ const styles = StyleSheet.create({
     color: '#1434C3',
     fontWeight: '500'
   },
-  renderItemWrapper: { flex: 1 },
-  renderItemImg: { flex: 1, width: null, height: null },
+  renderItemWrapper: {
+    flex: 1
+  },
+  renderItemImg: {
+    flex: 1,
+    width: null,
+    height: null
+  },
   carousel: {
   }
 })

@@ -7,7 +7,6 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './src/reducers'
 import MainScreen from './src/containers/MainScreen'
-// import Search from './src/containers/Search'
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk))
 
@@ -19,6 +18,5 @@ export default function App () {
     <Provider store={store}>
       <MainScreen />
     </Provider>
-    // <Search />
   )
 }

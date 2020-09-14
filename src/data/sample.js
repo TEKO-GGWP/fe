@@ -20,7 +20,7 @@ export const category = [
     item: [
       {
         id: '1',
-        image: require('../../assets/intro-home.png'),
+        image: require('../../assets/s531fa/1.png'),
         name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
         price: 17290000,
         discountRate: 1100000,
@@ -29,7 +29,7 @@ export const category = [
       },
       {
         id: '2',
-        image: require('../../assets/intro-home.png'),
+        image: require('../../assets/s531fa/2.png'),
         name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
         price: 17290000,
         discountRate: 1100000,
@@ -39,7 +39,7 @@ export const category = [
       },
       {
         id: '3',
-        image: require('../../assets/intro-home.png'),
+        image: require('../../assets/s531fa/3.png'),
         name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
         price: 15290000,
         discountRate: 1100000,
@@ -48,7 +48,7 @@ export const category = [
       },
       {
         id: '4',
-        image: require('../../assets/intro-home.png'),
+        image: require('../../assets/s531fa/4.png'),
         name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
         price: 17290000,
         discountRate: 1100000,
@@ -57,7 +57,7 @@ export const category = [
       },
       {
         id: '5',
-        image: require('../../assets/intro-home.png'),
+        image: require('../../assets/s531fa/5.png'),
         name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
         price: 16290000,
         discountRate: 1100000,
@@ -66,7 +66,7 @@ export const category = [
       },
       {
         id: '6',
-        image: require('../../assets/intro-home.png'),
+        image: require('../../assets/s531fa/6.png'),
         name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
         price: 17290000,
         discountRate: 1100000,
@@ -81,7 +81,7 @@ export const category = [
     item: [
       {
         id: '1',
-        image: require('../../assets/intro-home.png'),
+        image: require('../../assets/s531fa/2.png'),
         name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
         price: 17290000,
         discountRate: 1100000,
