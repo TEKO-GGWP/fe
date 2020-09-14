@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 import SignUp from './SignUp'
 import SignUpForm from './SignUpForm'
 import Home from './Home'
+import Cart from './Cart'
 import Detail from './Detail'
 import ConfirmOTP from './ConfirmOTP'
 
@@ -35,12 +36,13 @@ const MainScreen = (props) => {
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator>
-          {isAuthorized ? <Stack.Screen name="Home" component={Home}/>
-            : <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }}/>}
-          <Stack.Screen name="ConfirmOTP" component={ConfirmOTP} options={{ headerShown: false }}/>
-          <Stack.Screen name="SignUpForm" component={SignUpForm} options={{ headerShown: false }}/>
-          <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
-          <Stack.Screen name="Detail" component={Detail} options={{ headerShown: false }}/>
+          {isAuthorized ? <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+            : <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />}
+          <Stack.Screen name="ConfirmOTP" component={ConfirmOTP} options={{ headerShown: false }} />
+          <Stack.Screen name="SignUpForm" component={SignUpForm} options={{ headerShown: false }} />
+          <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+          <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
+          <Stack.Screen name="Detail" component={Detail} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

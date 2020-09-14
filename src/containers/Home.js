@@ -24,6 +24,10 @@ function Home (props) {
       animated: true
     })
   }
+
+  const onNavigatingToCartScreen = (data) => {
+    props.navigation.navigate('Cart')
+  }
   const onNavigatingToDetailScreen = (data) => {
     props.navigation.navigate('Detail')
   }
@@ -39,7 +43,7 @@ function Home (props) {
             <Logo />
           </View>
           <Text style={styles.subtitle}>
-            Xin chào, {props.userInformation.name}!
+            Xin chào, {props.userInformation.name ? props.userInformation.name : 'Anonymous'}!
           </Text>
         </View>
         <View style={styles.iconBox}>
@@ -51,7 +55,7 @@ function Home (props) {
               style={styles.headerIcon}
             />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={onNavigatingToCartScreen}>
             <Feather
               name='shopping-cart'
               size={25}

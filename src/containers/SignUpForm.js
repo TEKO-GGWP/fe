@@ -1,26 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import backgroundImage from '../../assets/background.png'
-import Icon from '../components/common/Icon'
-import Logo from '../components/common/Logo'
-import AsyncStorage from '@react-native-community/async-storage'
+import React, { useState, useEffect } from 'react'
 import {
-  ImageBackground,
-  Picker,
   SafeAreaView,
   StyleSheet,
+  ImageBackground,
+  Image,
+  View,
   Text,
   TextInput,
-  TouchableOpacity,
-  View
+  Picker,
+  TouchableOpacity
 } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 // import {Picker} from '@react-native-community/picker';
-import { RadioButton } from 'react-native-paper'
+import backgroundImage from '../../assets/background.png'
+import phongvuIcon from '../../assets/pv-icon.png'
+import phongvuLogo from '../../assets/pv-logo.png'
+import GenderRadioButton from '../components/GenderRadioButton'
 import * as VIETNAM_DATA from '../data/vietnam_provinces_cities.json'
-
 import { connect } from 'react-redux'
 import { actAddUserInformation } from '../actions'
-
-function SignUpForm (props) {
+const SignUpForm = (props) => {
   const [userProfile, setUserProfile] = useState({
     name: '',
     email: '',
@@ -42,22 +41,15 @@ function SignUpForm (props) {
 
   useEffect(() => {
     const tempCities = []
-    Object.keys(VIETNAM_DATA).map(key => {
-      tempCities.push({
-        value: key,
-        name: VIETNAM_DATA[key].name
-      })
+    Object.keys(VIETNAM_DATA).map((key) => {
+      tempCities.push({ value: key, name: VIETNAM_DATA[key].name })
     })
     setCities(tempCities)
   }, [])
-
-  const onCityValueChange = city => {
-    setUserProfile({
-      ...userProfile,
-      city
-    })
+  const onCityValueChange = (city) => {
+    setUserProfile({ ...userProfile, city })
     const tempDistricts = []
-    Object.keys(VIETNAM_DATA[city].cities).map(key => {
+    Object.keys(VIETNAM_DATA[city].cities).map((key) => {
       tempDistricts.push({
         value: key,
         name: VIETNAM_DATA[city].cities[key]
@@ -65,7 +57,6 @@ function SignUpForm (props) {
     })
     setDistricts(tempDistricts)
   }
-  /* eslint-disable no-unused-vars */
   const changeGenderProfile = (isMale) => {
     setUserProfile({ ...userProfile, isMale })
   }
@@ -74,13 +65,12 @@ function SignUpForm (props) {
     storeData(true)
     props.navigation.navigate('Home')
   }
-  /* eslint-enable no-unused-vars */
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-        {/* <View style={styles.iconWrapper}>
-          <Icon />
-        </View> */}
+        <View style={styles.iconWrapper}>
+          <Image source={phongvuIcon} />
+        </View>
         <View style={styles.formWrapper}>
           <Text style={styles.title}>Thông tin cơ bản</Text>
           <TextInput
@@ -88,92 +78,44 @@ function SignUpForm (props) {
             placeholderTextColor="#707070"
             autoCapitalize="none"
             style={styles.textInput}
-            onChangeText={name =>
-              setUserProfile({
-                ...userProfile,
-                name
-              })
-            }
+            onChangeText={(name) => setUserProfile({ ...userProfile, name })}
           />
           <TextInput
             placeholder="Ngày sinh"
             autoCapitalize="none"
             placeholderTextColor="#707070"
             style={styles.textInput}
-            onChangeText={dob =>
-              setUserProfile({
-                ...userProfile,
-                dob
-              })
-            }
+            onChangeText={(dob) => setUserProfile({ ...userProfile, dob })}
           />
-          <View style={styles.radioButtonsListWrapper}>
-            <Text style={styles.description}>Giới tính</Text>
-            <View style={styles.radioButtonWrapper}>
-              <RadioButton
-                value="Male"
-                status={
-                  userProfile.isMale ? 'checked' : 'unchecked'
-                }
-                color="rgb(21, 54, 195)"
-                onPress={() =>
-                  setUserProfile({
-                    ...userProfile,
-                    isMale: true
-                  })
-                }
-              />
-              <Text style={styles.description}>Nam</Text>
-            </View>
-            <View style={styles.radioButtonWrapper}>
-              <RadioButton
-                value="Female"
-                color="rgb(21, 54, 195)"
-                status={
-                  !userProfile.isMale
-                    ? 'checked'
-                    : 'unchecked'
-                }
-                onPress={() =>
-                  setUserProfile({
-                    ...userProfile,
-                    isMale: false
-                  })
-                }
-              />
-              <Text style={styles.description}>Nữ</Text>
-            </View>
-          </View>
+          <GenderRadioButton
+            isMale={userProfile.isMale}
+            onChangeGender={changeGenderProfile}
+          />
           <TextInput
             placeholder="Email"
             autoCapitalize="none"
             placeholderTextColor="#707070"
             style={styles.textInput}
-            onChangeText={email =>
-              setUserProfile({
-                ...userProfile,
-                email
-              })
-            }
+            onChangeText={(email) => setUserProfile({ ...userProfile, email })}
           />
           <View style={styles.pickerWrapper}>
             <Picker
               selectedValue={userProfile.city}
               style={styles.picker}
               prompt="City"
-              onValueChange={city => onCityValueChange(city)}
+              onValueChange={(city) => onCityValueChange(city)}
             >
-              <Picker.Item label="Tỉnh Thành phố" value="none"/>
+              <Picker.Item label="Tỉnh Thành phố" value="none" />
               {cities !== 'undefined' &&
-              cities
-                .slice(0, cities.length - 1)
-                .map((city, index) => (
-                  <Picker.Item
-                    key={index}
-                    label={city.name}
-                    value={city.value}
-                  />
-                ))}
+                cities
+                  .slice(0, cities.length - 1)
+                  .map((city, index) => (
+                    <Picker.Item
+                      key={index}
+                      label={city.name}
+                      value={city.value}
+                    />
+                  ))}
             </Picker>
           </View>
           <View style={styles.pickerWrapper}>
@@ -181,43 +123,31 @@ function SignUpForm (props) {
               selectedValue={userProfile.district}
               style={styles.picker}
               prompt="District"
-              onValueChange={district =>
-                setUserProfile({
-                  ...userProfile,
-                  district
-                })
+              onValueChange={(district) =>
+                setUserProfile({ ...userProfile, district })
               }
             >
-              <Picker.Item label="Quận/ Huyện" value="none"/>
+              <Picker.Item label="Quận/Huyện" value="none" />
               {districts !== 'undefined' &&
-              districts
-                .slice(0, districts.length - 1)
-                .map((district, index) => (
-                  <Picker.Item
-                    key={index}
-                    label={district.name}
-                    value={district.value}
-                  />
-                ))}
+                districts
+                  .slice(0, districts.length - 1)
+                  .map((district, index) => (
+                    <Picker.Item
+                      key={index}
+                      label={district.name}
+                      value={district.value}
+                    />
+                  ))}
             </Picker>
           </View>
-          <TouchableOpacity style={styles.button}>
-            <Text
-              style={styles.text}
-              onPress={() => console.log(userProfile)}
-            >
-              Tiếp tục
-            </Text>
+          <TouchableOpacity style={styles.button} onPress={sendUserProfile}>
+            <Text style={styles.text}>Tiếp tục</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.footer}>
-          <View style={styles.logoImage}>
-            <Logo />
-          </View>
-        </View>
-        <View style={styles.lowerImage}>
-          <Icon />
+          <Image style={styles.logoImage} source={phongvuLogo} />
+          <Image style={styles.iconImage} source={phongvuIcon} />
         </View>
       </ImageBackground>
     </SafeAreaView>
@@ -235,13 +165,15 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%'
   },
+  iconWrapper: {
+    flex: 1,
+    alignItems: 'flex-end',
+    marginRight: -50
+  },
   formWrapper: {
-    flex: 4,
+    flex: 3,
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 100,
-    elevation: 2,
-    zIndex: 2
+    justifyContent: 'center'
   },
   logoWrapper: {
     flex: 0.5,
@@ -249,16 +181,13 @@ const styles = StyleSheet.create({
   },
   footer: {
     flex: 1,
-    // flexDirection: 'row',
     marginTop: 10,
     justifyContent: 'center',
     alignItems: 'center'
   },
   logoImage: {
     resizeMode: 'contain',
-    height: '15%',
-    elevation: 2,
-    zIndex: 2
+    height: '15%'
   },
   iconImage: {
     alignSelf: 'flex-start',
@@ -266,12 +195,12 @@ const styles = StyleSheet.create({
   },
   textInput: {
     color: '#707070',
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: '500',
     width: '80%',
     height: 50,
     backgroundColor: '#fff',
-    borderRadius: 10,
+    borderRadius: 17,
     paddingHorizontal: 10,
     marginVertical: 5
   },
@@ -283,7 +212,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     height: 50,
     width: '80%',
-    borderRadius: 10
+    borderRadius: 17
   },
   radioButtonsListWrapper: {
     width: '80%',
@@ -303,8 +232,8 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 200,
-    height: 50,
-    borderRadius: 25,
+    height: 35,
+    borderRadius: 17,
     marginTop: 20,
     backgroundColor: 'rgb(21, 54, 195)',
     alignItems: 'center',
@@ -317,7 +246,7 @@ const styles = StyleSheet.create({
     fontWeight: '500'
   },
   description: {
-    fontSize: 15,
+    fontSize: 18,
     color: '#707070',
     fontWeight: '500'
   },
@@ -326,13 +255,6 @@ const styles = StyleSheet.create({
     color: 'rgb(21, 54, 195)',
     fontWeight: 'bold',
     fontSize: 24
-  },
-  lowerImage: {
-    position: 'absolute',
-    bottom: -15,
-    left: -15,
-    elevation: 1,
-    zIndex: 1
   }
 })
 
