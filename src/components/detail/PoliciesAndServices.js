@@ -86,7 +86,8 @@ export default function PoliciesAndServices () {
 /* eslint-enable react/prop-types */
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    marginBottom: 30
   },
   showFlex: {
     flexDirection: 'row',

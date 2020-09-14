@@ -3,14 +3,17 @@ import CarouselSlide from '../components/detail/CarouselSlide'
 import Specifications from '../components/detail/Specifications'
 import Promotions from '../components/detail/Promotions'
 import PoliciesAndServices from '../components/detail/PoliciesAndServices'
-import SameBrandList from '../components/detail/SameBrandList'
+import SuggestDetail from '../components/detail/SuggestDetail'
 import NoLogoHeader from '../components/common/NoLogoHeader'
 import * as SAMPLE_PRODUCTS from '../data/sample_detail_products.json'
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView
+  ScrollView,
+  View,
+  Text
 } from 'react-native'
+import { Feather } from '@expo/vector-icons'
 
 const DATA = [
   {
@@ -51,20 +54,33 @@ export default function Detail () {
         <Specifications data={SAMPLE_PRODUCTS} />
         <Promotions data={SAMPLE_PRODUCTS} />
         <PoliciesAndServices />
-        <SameBrandList data={SAMPLE_PRODUCTS.same_brand_products} />
+        <SuggestDetail name="Cùng thương hiệu ASUS" data={SAMPLE_PRODUCTS.same_brand_products} />
+        <SuggestDetail name="Sản phẩm tương tự" data={SAMPLE_PRODUCTS.same_brand_products} />
       </ScrollView>
+      <View style={styles.footer}>
+        <View style={[styles.footerItem, styles.footerLeft]}>
+          <Feather
+            name="shopping-cart"
+            size={30}
+            color="#627DF5"
+          />
+        </View>
+        <View style={[styles.footerItem, styles.footerRight]}>
+          <Text style={styles.buyNow}>Mua ngay</Text>
+        </View>
+      </View>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginHorizontal: 10,
-    marginVertical: 10
+    flex: 1
   },
   body: {
-    flex: 10 / 11
+    flex: 10 / 11,
+    marginHorizontal: 10,
+    marginVertical: 10
   },
   backgroundImage: {
     flex: 1,
@@ -114,8 +130,28 @@ const styles = StyleSheet.create({
     fontWeight: '500'
   },
   footer: {
-    flex: 4,
-    justifyContent: 'flex-end',
-    marginBottom: -50
+    position: 'absolute',
+    flexDirection: 'row',
+    bottom: 0,
+    left: 0,
+    right: 0
+  },
+  footerItem: {
+    width: '50%',
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  footerLeft: {
+    backgroundColor: 'white',
+    borderColor: '#627DF5',
+    borderWidth: 2
+  },
+  footerRight: {
+    backgroundColor: '#627DF5'
+  },
+  buyNow: {
+    textTransform: 'uppercase',
+    color: 'white'
   }
 })

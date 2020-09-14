@@ -204,7 +204,7 @@ function SignUpForm (props) {
           <TouchableOpacity style={styles.button}>
             <Text
               style={styles.text}
-              onPress={() => sendUserProfile()}
+              onPress={sendUserProfile}
             >
               Tiếp tục
             </Text>
