@@ -10,9 +10,9 @@ import { Feather } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const CategoryItem = (props) => {
-  const { item, onPress, showDiscounted } = props
+  const { item, onPress, showDiscounted, width } = props
   return (
-    <View style={styles.categoryItem}>
+    <View style={{ width: width }}>
       <TouchableOpacity onPress={onPress}>
         <View style={styles.itemImageContainer}>
           <Image
@@ -65,15 +65,13 @@ const CategoryItem = (props) => {
 }
 
 const styles = StyleSheet.create({
-  categoryItem: {
-    width: '50%'
-  },
   itemImageContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap'
   },
   itemImage: {
     flex: 1,
+    height: 200,
     marginTop: 15,
     marginLeft: 5,
     marginRight: 5,

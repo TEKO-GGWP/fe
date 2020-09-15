@@ -73,18 +73,24 @@
     "same_brand_products": [
         {
             "id": "1",
+            "image": "require('../../assets/s531fa/1.png')",
             "name": "Bộ cấp nguồn/ Adapter Asus 19V-3.42A-65W (Đầu thường)",
-            "price": "385.000đ"
+            "price": "385.000đ",
+            "gifts": ["require('../../assets/intro-home.png')", "require('../../assets/intro-home.png')", "require('../../assets/intro-home.png')"]
         },
         {
             "id": "2",
+            "image": "require('../../assets/s531fa/1.png')",
             "name": "Bộ cấp nguồn/ Adapter Asus 19V-3.42A-65W (Đầu thường)",
-            "price": "385.000đ"
+            "price": "385.000đ",
+            "gifts": ["require('../../assets/intro-home.png')", "require('../../assets/intro-home.png')", "require('../../assets/intro-home.png')"]
         },
         {
             "id": "3",
+            "image": "require('../../assets/s531fa/1.png')",
             "name": "Bộ cấp nguồn/ Adapter Asus 19V-3.42A-65W (Đầu thường)",
-            "price": "385.000đ"
+            "price": "385.000đ",
+            "gifts": ["require('../../assets/intro-home.png')", "require('../../assets/intro-home.png')", "require('../../assets/intro-home.png')"]
         }
     ]
 }

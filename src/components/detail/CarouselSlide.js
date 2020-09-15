@@ -45,9 +45,8 @@ export default function CarouselSlide (props) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 260,
-    alignItems: 'center',
-    marginVertical: 50
+    height: 400,
+    alignItems: 'center'
   },
   title: {
     fontSize: 16,
@@ -74,8 +73,14 @@ const styles = StyleSheet.create({
     color: '#1434C3',
     fontWeight: '500'
   },
-  renderItemWrapper: { flex: 1 },
-  renderItemImg: { flex: 1, width: null, height: null },
+  renderItemWrapper: {
+    flex: 1
+  },
+  renderItemImg: {
+    flex: 1,
+    width: null,
+    height: null
+  },
   carousel: {
   }
 })

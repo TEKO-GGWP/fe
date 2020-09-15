@@ -204,7 +204,7 @@ function SignUpForm (props) {
           <TouchableOpacity style={styles.button}>
             <Text
               style={styles.text}
-              onPress={() => console.log(userProfile)}
+              onPress={sendUserProfile}
             >
               Tiếp tục
             </Text>
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
     borderRightColor: '#000'
   },
   button: {
-    width: 200,
+    width: 300,
     height: 50,
     borderRadius: 25,
     marginTop: 20,
