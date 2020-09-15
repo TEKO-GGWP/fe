@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SafeAreaView, StyleSheet, ScrollView } from 'react-native'
 import CarouselSlide from '../components/detail/CarouselSlide'
 import Specifications from '../components/detail/Specifications'
@@ -7,6 +7,8 @@ import Promotions from '../components/detail/Promotions'
 import * as SAMPLE_PRODUCTS from '../data/sample_detail_products.json'
 import PoliciesAndServices from '../components/detail/PoliciesAndServices'
 import SameBrandList from '../components/detail/SameBrandList'
+import { connect } from 'react-redux'
+import { actAddToCart, actFetchProductByIdRequest } from '../actions'
 const DATA = [
   {
     name: 'Image 1',
@@ -37,7 +39,11 @@ const DATA = [
     path: require('../../assets/s531fa/7.png')
   }
 ]
-export default function Detail () {
+const Detail = (props) => {
+  useEffect(() => {
+    props.onFetchProductById(1)
+  }, [])
+  console.log(props.product)
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -110,3 +116,21 @@ const styles = StyleSheet.create({
     marginBottom: -50
   }
 })
+const mapStateToProps = state => {
+  return {
+    product: state.product
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAddToCart: (product) => {
+      actAddToCart(product)
+    },
+    onFetchProductById: (id) => {
+      actFetchProductByIdRequest(id)
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Detail)

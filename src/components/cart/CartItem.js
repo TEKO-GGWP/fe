@@ -5,8 +5,9 @@ import {
   Text,
   View
 } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 // import {Picker} from '@react-native-community/picker';
-
+import { AntDesign } from '@expo/vector-icons'
 import { connect } from 'react-redux'
 const item = {
   id: '1',
@@ -37,6 +38,9 @@ const CartItem = (props) => {
           }
         </View>
       </View>
+      <TouchableOpacity >
+        <AntDesign name="close" size={24} color="black" style={styles.removeIcon} />
+      </TouchableOpacity>
     </View >
   )
 }
@@ -86,7 +90,10 @@ const styles = StyleSheet.create({
   },
   amountWrapper: {},
   isRemain: { color: '#14C32A' },
-  isNotRemain: {}
+  isNotRemain: { color: 'red' },
+  removeIcon: {
+    alignSelf: 'flex-start'
+  }
 
 })
 

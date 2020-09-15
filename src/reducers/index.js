@@ -1,10 +1,17 @@
 import { combineReducers } from 'redux'
 import userInformation from './userInformation'
 import hotDeal from './hotDeal'
-
-const rootReducer = combineReducers({
+import cart from './cart'
+import product from './product'
+const initialState = null
+const appReducers = combineReducers({
   userInformation,
-  hotDeal
+  hotDeal,
+  cart,
+  product
 })
+const rootReducer = (state = initialState, action) => {
+  return appReducers(state, action)
+}
 
 export default rootReducer

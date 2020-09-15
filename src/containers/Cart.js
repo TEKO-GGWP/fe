@@ -1,8 +1,11 @@
 import React from 'react'
 import {
   SafeAreaView,
-  StyleSheet
+  StyleSheet,
+  Text,
+  View
 } from 'react-native'
+import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 // import {Picker} from '@react-native-community/picker';
 
 import { connect } from 'react-redux'
@@ -14,7 +17,25 @@ const Cart = (props) => {
   /* eslint-enable no-unused-vars */
   return (
     <SafeAreaView style={styles.container}>
-      <CartItem />
+      <ScrollView>
+        <CartItem />
+        <CartItem />
+        <CartItem />
+        <View style={styles.couponWrapper}>
+          <TextInput editable style={{ borderColor: 'pink', borderWidth: 5 }} />
+          <TouchableOpacity>
+            <Text>APPLY</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.checkOutWrapper}>
+          <Text>Tạm tính</Text>
+          <Text>Giảm giá</Text>
+          <Text>Tổng tiền</Text>
+          <TouchableOpacity>
+            <Text>THANH TOÁN</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
