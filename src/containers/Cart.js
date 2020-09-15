@@ -1,15 +1,19 @@
 import React from 'react'
+import CartItem from '../components/cart/CartItem'
 import {
   SafeAreaView,
   StyleSheet,
   Text,
   View
 } from 'react-native'
-import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler'
-// import {Picker} from '@react-native-community/picker';
-
+import {
+  ScrollView,
+  TextInput,
+  TouchableOpacity
+} from 'react-native-gesture-handler'
 import { connect } from 'react-redux'
-import CartItem from '../components/cart/CartItem'
+import { Feather } from '@expo/vector-icons'
+import Icon from '../components/common/Icon'
 
 const Cart = (props) => {
   /* eslint-disable no-unused-vars */
@@ -17,138 +21,149 @@ const Cart = (props) => {
   /* eslint-enable no-unused-vars */
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      <View style={styles.header}>
+        <Feather
+          name="chevron-left"
+          size={30}
+          color="#239FE6"
+        />
+        <Text style={styles.title}>Giỏ hàng</Text>
+      </View>
+      <ScrollView style={styles.body}>
         <CartItem />
         <CartItem />
         <CartItem />
-        <View style={styles.couponWrapper}>
-          <TextInput editable style={{ borderColor: 'pink', borderWidth: 5 }} />
-          <TouchableOpacity>
-            <Text>APPLY</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.checkOutWrapper}>
-          <Text>Tạm tính</Text>
-          <Text>Giảm giá</Text>
-          <Text>Tổng tiền</Text>
-          <TouchableOpacity>
-            <Text>THANH TOÁN</Text>
-          </TouchableOpacity>
-        </View>
       </ScrollView>
+      <View style={styles.couponWrapper}>
+        <TextInput
+          editable
+          style={styles.textInput}
+          placeholder="Mã giảm giá"
+        />
+        <TouchableOpacity style={styles.couponButton}>
+          <Text style={styles.couponText}>APPLY</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.checkOutWrapper}>
+        <View style={styles.checkOutText}>
+          <Text style={styles.greyText}>Tạm tính</Text>
+          <Text style={styles.greyText}>11280000</Text>
+        </View>
+        <View style={styles.checkOutText}>
+          <Text style={styles.greyText}>Giảm giá</Text>
+          <Text style={styles.greyText}>11280000</Text>
+        </View>
+        <View style={styles.checkOutText}>
+          <Text style={styles.total}>Tổng tiền</Text>
+          <Text style={styles.total}>11280000</Text>
+        </View>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>THANH TOÁN</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.upperImage}>
+        <Icon />
+      </View>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'column'
+    flex: 1
   },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover',
-    width: '100%',
-    height: '100%'
-  },
-  formWrapper: {
-    flex: 4,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 100,
-    elevation: 2,
-    zIndex: 2
-  },
-  logoWrapper: {
-    flex: 0.5,
-    alignItems: 'center'
-  },
-  footer: {
-    flex: 1,
-    // flexDirection: 'row',
-    marginTop: 10,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  logoImage: {
-    resizeMode: 'contain',
-    height: '15%',
-    elevation: 2,
-    zIndex: 2
-  },
-  iconImage: {
-    alignSelf: 'flex-start',
-    marginBottom: -50
-  },
-  textInput: {
-    color: '#707070',
-    fontSize: 15,
-    fontWeight: '500',
-    width: '80%',
-    height: 50,
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    marginVertical: 5
-  },
-  picker: {
-    color: '#707070'
-  },
-  pickerWrapper: {
-    backgroundColor: '#fff',
-    marginVertical: 5,
-    height: 50,
-    width: '80%',
-    borderRadius: 10
-  },
-  radioButtonsListWrapper: {
-    width: '80%',
+  header: {
+    flex: 1 / 9,
     flexDirection: 'row',
-    justifyContent: 'space-around',
     alignItems: 'center',
-    marginVertical: 5
-  },
-  radioButtonWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center'
-  },
-  countryPickStyle: {
-    borderRightWidth: 2,
-    borderRightColor: '#000'
-  },
-  button: {
-    width: 200,
-    height: 50,
-    borderRadius: 25,
+    marginLeft: 10,
+    marginRight: 10,
     marginTop: 20,
-    backgroundColor: 'rgb(21, 54, 195)',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  text: {
-    textTransform: 'uppercase',
-    fontSize: 20,
-    color: '#fff',
-    fontWeight: '500'
-  },
-  description: {
-    fontSize: 15,
-    color: '#707070',
-    fontWeight: '500'
+    elevation: 2,
+    zIndex: 2
   },
   title: {
-    marginVertical: 10,
     color: 'rgb(21, 54, 195)',
     fontWeight: 'bold',
     fontSize: 24
   },
-  lowerImage: {
+  body: {
+    flex: 3 / 9,
+    elevation: 2,
+    zIndex: 2,
+    backgroundColor: '#fff'
+  },
+  couponWrapper: {
+    flex: 1 / 9,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 2,
+    zIndex: 2,
+    marginTop: 10
+  },
+  couponButton: {
+    width: 70,
+    height: 45,
+    backgroundColor: '#51D2FF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10
+  },
+  couponText: {
+    color: '#1435C3'
+  },
+  textInput: {
+    width: '60%',
+    height: 45,
+    color: '#707070',
+    fontSize: 15,
+    fontWeight: '500',
+    backgroundColor: '#fff',
+    borderColor: '#112DA8',
+    borderWidth: 1,
+    padding: 10
+  },
+  checkOutWrapper: {
+    flex: 4 / 9,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 2,
+    zIndex: 2
+  },
+  checkOutText: {
+    flexDirection: 'row',
+    width: '80%',
+    justifyContent: 'space-between',
+    marginBottom: 10
+  },
+  greyText: {
+    color: '#B2BEC3'
+  },
+  total: {
+    fontWeight: 'bold',
+    color: '#1435C3',
+    fontSize: 18,
+    marginBottom: 5
+  },
+  button: {
+    width: 300,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: 'rgb(21, 54, 195)',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 20
+  },
+  upperImage: {
     position: 'absolute',
-    bottom: -15,
+    top: -15,
     left: -15,
-    elevation: 1,
-    zIndex: 1
+    zIndex: 1,
+    elevation: 1
   }
 })
 

@@ -6,12 +6,12 @@ import {
   View
 } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-// import {Picker} from '@react-native-community/picker';
-import { AntDesign } from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 import { connect } from 'react-redux'
+
 const item = {
   id: '1',
-  image: require('../../../assets/intro-home.png'),
+  image: require('../../../assets/s531fa/1.png'),
   name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
   brand: 'ASUS',
   price: 17290000,
@@ -19,27 +19,55 @@ const item = {
   discountedPrice: 16190000,
   isRemain: true
 }
+
 const CartItem = (props) => {
   /* eslint-disable no-unused-vars */
 
   /* eslint-enable no-unused-vars */
   return (
     <View style={styles.container}>
-      <View style={styles.imageWrapper}><Image source={item.image} style={styles.image} resizeMode='contain'></Image></View>
+      <View style={styles.imageWrapper}>
+        <Image source={item.image} style={styles.image} resizeMode='contain' />
+      </View>
       <View style={styles.detail}>
         <Text style={styles.title}>{item.name}</Text>
         <Text style={styles.brand}>Cung cấp bởi {item.brand}</Text>
+        {item.discountedPrice
+          ? <Text Text style={styles.discountedPrice}>{item.discountedPrice}đ</Text>
+          : <></>
+        }
         <Text style={styles.price}>{item.price}đ</Text>
-        {item.discountedPrice ? <Text Text style={styles.discountedPrice}>{item.discountedPrice}đ</Text> : <></>}
         <View style={styles.amountWrapper}>
           {item.isRemain
             ? <Text style={styles.isRemain}>Còn hàng</Text>
             : <Text style={styles.isNotRemain}>Hết hàng</Text>
           }
+          <View style={styles.amountButtonWrapper}>
+            <TouchableOpacity style={styles.amountButton}>
+              <Feather
+                name="minus"
+                size={16}
+                color="#14C32A"
+              />
+            </TouchableOpacity>
+            <Text style={styles.amount}>1</Text>
+            <TouchableOpacity style={styles.amountButton}>
+              <Feather
+                name="plus"
+                size={16}
+                color="#14C32A"
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
       <TouchableOpacity >
-        <AntDesign name="close" size={24} color="black" style={styles.removeIcon} />
+        <Feather
+          name="x"
+          size={24}
+          color="black"
+          style={styles.removeIcon}
+        />
       </TouchableOpacity>
     </View >
   )
@@ -47,13 +75,10 @@ const CartItem = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 200,
     flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: 20,
     backgroundColor: 'white',
-    marginHorizontal: 20,
-    marginVertical: 20
+    marginVertical: 15,
+    paddingTop: 10
   },
   imageWrapper: {
     flex: 1,
@@ -62,7 +87,8 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     height: null,
-    width: '100%'
+    width: '100%',
+    resizeMode: 'contain'
   },
   detail: {
     flex: 2
@@ -70,29 +96,54 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     color: '#1435C3',
-    marginBottom: 10
+    marginBottom: 5
   },
   brand: {
     color: '#B2BEC3',
-    marginBottom: 10
-
+    marginBottom: 5
   },
   price: {
     color: '#C31414',
     textDecorationLine: 'line-through',
     textDecorationStyle: 'solid',
-    marginBottom: 5
+    marginBottom: 10
   },
   discountedPrice: {
     color: '#C31414',
     marginBottom: 5
 
   },
-  amountWrapper: {},
-  isRemain: { color: '#14C32A' },
-  isNotRemain: { color: 'red' },
+  amountWrapper: {
+    marginBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  isRemain: {
+    color: '#14C32A'
+  },
+  isNotRemain: {
+    color: 'red'
+  },
+  amountButtonWrapper: {
+    flexDirection: 'row'
+  },
+  amountButton: {
+    width: 30,
+    height: 30,
+    backgroundColor: '#DFE6E9',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  amount: {
+    color: '#14C32A',
+    width: 30,
+    height: 30,
+    textAlign: 'center',
+    textAlignVertical: 'center'
+  },
   removeIcon: {
-    alignSelf: 'flex-start'
+    marginRight: 10,
+    marginLeft: 10
   }
 
 })
