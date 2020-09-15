@@ -1,7 +1,7 @@
 
-import Axios from 'axios'
 import * as Types from './actionTypes'
-import URL from '../../Constants'
+import { URL } from '../../Constants'
+import Axios from 'axios'
 export const actAuthorize = () => {
 
 }
@@ -34,9 +34,8 @@ export const actFetchHotDeals = (hotDeal) => {
   }
 }
 export const actFetchProductByIdRequest = (id) => {
-  console.log('run')
   return dispatch => {
-    Axios.get(`${URL}/product/${id}`).then(res => dispatch(actFetchProductById(res.data)))
+    return Axios.get(`${URL}/product/${id}`).then(res => dispatch(actFetchProductById(res.data)))
   }
 }
 

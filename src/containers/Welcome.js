@@ -9,8 +9,8 @@ import {
 } from 'react-native'
 
 import backgroundImage from '../../assets/background.png'
-import phongvuIcon from '../../assets/pv-icon.svg'
-import phongvuLogo from '../../assets/pv-logo.svg'
+import phongvuIcon from '../../assets/pv-icon.png'
+import phongvuLogo from '../../assets/pv-logo.png'
 
 export default function Welcome () {
   return (

@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
-import { SafeAreaView, StyleSheet, ScrollView } from 'react-native'
+import { SafeAreaView, StyleSheet, ScrollView, Button } from 'react-native'
 import CarouselSlide from '../components/detail/CarouselSlide'
 import Specifications from '../components/detail/Specifications'
 import Promotions from '../components/detail/Promotions'
-
-import * as SAMPLE_PRODUCTS from '../data/sample_detail_products.json'
 import PoliciesAndServices from '../components/detail/PoliciesAndServices'
 import SameBrandList from '../components/detail/SameBrandList'
 import { connect } from 'react-redux'
@@ -43,15 +41,20 @@ const Detail = (props) => {
   useEffect(() => {
     props.onFetchProductById(1)
   }, [])
-  console.log(props.product)
+  const { product } = props
+  const onAddToCart = () => {
+    props.onAddToCart(product)
+  }
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <CarouselSlide data={DATA} />
-        <Specifications data={SAMPLE_PRODUCTS} />
-        <Promotions data={SAMPLE_PRODUCTS} />
+        <Button title="add to cart"
+          onPress={onAddToCart} />
+        <Specifications data={product} />
+        <Promotions data={product} />
         <PoliciesAndServices />
-        <SameBrandList data={SAMPLE_PRODUCTS.same_brand_products} />
+        <SameBrandList data={product.same_brand_products} />
       </ScrollView>
     </SafeAreaView>
   )
@@ -125,10 +128,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddToCart: (product) => {
-      actAddToCart(product)
+      dispatch(actAddToCart(product))
     },
     onFetchProductById: (id) => {
-      actFetchProductByIdRequest(id)
+      dispatch(actFetchProductByIdRequest(id))
     }
   }
 }

@@ -7,8 +7,8 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from './src/reducers'
 // import MainScreen from './src/containers/MainScreen'
-import Cart from './src/containers/Cart'
-// import Detail from './src/containers/Detail'
+// import Cart from './src/containers/Cart'
+import Detail from './src/containers/Detail'
 // import search from './src/containers/search'
 
 // const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk))
@@ -24,7 +24,7 @@ export default function App () {
   /* eslint-enable no-unused-vars */
   return (
     <Provider store={store}>
-      <Cart />
+      <Detail />
       {/* <MainScreen /> */}
     </Provider>
     // <search />
