@@ -130,8 +130,8 @@ const mapDispatchToProps = (dispatch) => {
     onAddToCart: (product) => {
       dispatch(actAddToCart(product))
     },
-    onFetchProductById: (id) => {
-      dispatch(actFetchProductByIdRequest(id))
+    onFetchProductById: (sku) => {
+      dispatch(actFetchProductByIdRequest(sku))
     }
   }
 }

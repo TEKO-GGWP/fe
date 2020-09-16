@@ -33,9 +33,9 @@ export const actFetchHotDeals = (hotDeal) => {
     hotDeal
   }
 }
-export const actFetchProductByIdRequest = (id) => {
+export const actFetchProductByIdRequest = (sku) => {
   return dispatch => {
-    return Axios.get(`${URL}/product/${id}`).then(res => dispatch(actFetchProductById(res.data)))
+    return Axios.get(`${URL}/product/${sku}`).then(res => dispatch(actFetchProductById(res.data)))
   }
 }
 
