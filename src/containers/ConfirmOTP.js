@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
   digitContainer: {
     flex: 1 / 9,
-    width: '100%',
+    width: '80%',
     height: 60,
     flexDirection: 'row',
     justifyContent: 'space-around',

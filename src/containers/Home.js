@@ -42,10 +42,7 @@ const Home = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <View style={{
-          zIndex: 2,
-          elevation: 2
-        }}>
+        <View>
           <View style={styles.logo}>
             <Logo />
           </View>
@@ -86,7 +83,7 @@ const Home = (props) => {
           showsHorizontalScrollIndicator={false}
         />
         <Interest />
-        {category.map((item) => <Category item={item} key={item.id} onPress={onNavigatingToDetailScreen} />)}
+        {category.map((item) => <Category item={item} key={item.id} onPress={onNavigatingToDetailScreen} showDiscounted={true} />)}
         <TouchableOpacity style={styles.goTopButton} onPress={() => handleGoTop()}>
           <Text style={styles.goTopText}>Quay lại đầu trang</Text>
           <Feather
@@ -123,7 +120,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 20
+    padding: 20,
+    elevation: 2,
+    zIndex: 2
   },
   logo: {
     marginTop: 15,
@@ -138,7 +137,9 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 8 / 9,
-    elevation: 2
+    elevation: 2,
+    zIndex: 2,
+    backgroundColor: 'white'
   },
   upperImage: {
     position: 'absolute',

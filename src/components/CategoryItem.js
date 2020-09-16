@@ -65,21 +65,18 @@ const CategoryItem = (props) => {
 }
 
 const styles = StyleSheet.create({
-  categoryItem: {
-    width: '50%'
-  },
   itemImageContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap'
   },
   itemImage: {
     flex: 1,
+    height: 200,
     marginTop: 15,
     marginLeft: 5,
     marginRight: 5,
     resizeMode: 'contain',
-    width: 200,
-    height: 200
+    width: 200
   },
   itemName: {
     padding: 5

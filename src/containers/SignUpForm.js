@@ -140,8 +140,13 @@ const SignUpForm = (props) => {
                   ))}
             </Picker>
           </View>
-          <TouchableOpacity style={styles.button} onPress={sendUserProfile}>
-            <Text style={styles.text}>Tiếp tục</Text>
+          <TouchableOpacity style={styles.button}>
+            <Text
+              style={styles.text}
+              onPress={sendUserProfile}
+            >
+              Tiếp tục
+            </Text>
           </TouchableOpacity>
         </View>
 
@@ -231,9 +236,9 @@ const styles = StyleSheet.create({
     borderRightColor: '#000'
   },
   button: {
-    width: 200,
-    height: 35,
-    borderRadius: 17,
+    width: 300,
+    height: 50,
+    borderRadius: 25,
     marginTop: 20,
     backgroundColor: 'rgb(21, 54, 195)',
     alignItems: 'center',
