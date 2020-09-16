@@ -10,7 +10,7 @@ import {
 import CategoryItem from '../CategoryItem'
 
 export default function SuggestDetail (props) {
-  const { data, index, name } = props
+  const { data, index, name, onPress } = props
   return (
     <View style={styles.container} key={index}>
       <View style={styles.titleWrapper}>
@@ -20,13 +20,13 @@ export default function SuggestDetail (props) {
         </TouchableOpacity>
       </View>
       <View style={styles.sameBrandItemWrapper}>
-        <FlatList
+        {props.data && <FlatList
           data={data}
-          renderItem={item => <CategoryItem item={item.item} width={200} />}
-          keyExtractor={item => item.id}
+          renderItem={item => <CategoryItem item={item?.item} width={200} onPress={onPress} />}
+          keyExtractor={item => item?.id?.toString()}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-        />
+        />}
       </View>
     </View>
   )

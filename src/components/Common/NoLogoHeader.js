@@ -6,14 +6,16 @@ import {
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
-export default function NoLogoHeader () {
+export default function NoLogoHeader (props) {
   return (
     <View style={styles.header}>
-      <Feather
-        name="chevron-left"
-        size={30}
-        color="#239FE6"
-      />
+      <TouchableOpacity onPress={() => props.navigation.goBack()}>
+        <Feather
+          name="chevron-left"
+          size={30}
+          color="#239FE6"
+        />
+      </TouchableOpacity>
       <TouchableOpacity>
         <Feather
           name="shopping-cart"

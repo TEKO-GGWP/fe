@@ -5,7 +5,6 @@ import Promotions from '../components/detail/Promotions'
 import PoliciesAndServices from '../components/detail/PoliciesAndServices'
 import SuggestDetail from '../components/detail/SuggestDetail'
 import NoLogoHeader from '../components/common/NoLogoHeader'
-import * as SAMPLE_PRODUCTS from '../data/sample_detail_products.json'
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,60 +13,35 @@ import {
   Text
 } from 'react-native'
 import { connect } from 'react-redux'
-import { actAddToCart, actFetchProductByIdRequest } from '../actions'
-import { Button } from 'react-native-paper'
+import { actAddToCart, actFetchSameBrandProductsRequest, actFetchSimilarProductsRequest } from '../actions'
+// import { Button } from 'react-native-paper'
 // import { Feather } from '@expo/vector-icons'
 
-const DATA = [
-  {
-    name: 'Image 1',
-    path: require('../../assets/s531fa/1.png')
-  },
-  {
-    name: 'Image 2',
-    path: require('../../assets/s531fa/2.png')
-  },
-  {
-    name: 'Image 3',
-    path: require('../../assets/s531fa/3.png')
-  },
-  {
-    name: 'Image 4',
-    path: require('../../assets/s531fa/4.png')
-  },
-  {
-    name: 'Image 5',
-    path: require('../../assets/s531fa/5.png')
-  },
-  {
-    name: 'Image 6',
-    path: require('../../assets/s531fa/6.png')
-  },
-  {
-    name: 'Image 7',
-    path: require('../../assets/s531fa/7.png')
-  }
-]
 const Detail = (props) => {
+  const { product } = props.route.params
+  const { sameBrandProducts, similarProducts } = props
   useEffect(() => {
-    props.onFetchProductById(1)
+    props.onFetchSameBrandProduct()
+    props.onFetchSimilarProduct()
   }, [])
-  const { product } = props
-  const onAddToCart = () => {
-    props.onAddToCart(product)
+  // const onAddToCart = () => {
+  //   props.onAddToCart(product)
+  // }
+  const onNavigatingToDetailScreen = (data) => {
+    props.navigation.navigate('Detail', { product: data })
   }
   return (
     <SafeAreaView style={styles.container}>
-      <NoLogoHeader />
+      <NoLogoHeader navigation={props.navigation} />
       <ScrollView style={styles.body}>
-        <CarouselSlide data={DATA} />
-        <Button title="add to cart"
-          onPress={onAddToCart} />
+        <CarouselSlide data={product} />
+        {/* <Button title="add to cart"
+          onPress={onAddToCart} /> */}
         <Specifications data={product} />
         <Promotions data={product} />
         <PoliciesAndServices />
-        <SuggestDetail name="Cùng thương hiệu ASUS" data={SAMPLE_PRODUCTS.same_brand_products} />
-        <SuggestDetail name="Sản phẩm tương tự" data={SAMPLE_PRODUCTS.same_brand_products} />
+        <SuggestDetail name="Cùng thương hiệu ASUS" data={sameBrandProducts} onPress={onNavigatingToDetailScreen} />
+        <SuggestDetail name="Sản phẩm tương tự" data={similarProducts} onPress={onNavigatingToDetailScreen} />
       </ScrollView>
       <View style={styles.footer}>
         {/* <View style={[styles.footerItem, styles.footerLeft]}>
@@ -169,7 +143,9 @@ const styles = StyleSheet.create({
 })
 const mapStateToProps = state => {
   return {
-    product: state.product
+    product: state.product,
+    similarProducts: state.similarProducts,
+    sameBrandProducts: state.sameBrandProducts
   }
 }
 
@@ -178,8 +154,11 @@ const mapDispatchToProps = (dispatch) => {
     onAddToCart: (product) => {
       dispatch(actAddToCart(product))
     },
-    onFetchProductById: (sku) => {
-      dispatch(actFetchProductByIdRequest(sku))
+    onFetchSameBrandProduct: () => {
+      dispatch(actFetchSameBrandProductsRequest())
+    },
+    onFetchSimilarProduct: () => {
+      dispatch(actFetchSimilarProductsRequest())
     }
   }
 }

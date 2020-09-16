@@ -19,10 +19,10 @@ export default function Promotions (props) {
   return (
     <View style={styles.container} key={index}>
       <View>
-        <Text style={styles.price}>Giá: {data.price}</Text>
-        <Text>Đã giảm thêm: <Text style={styles.sale}>{data.sale}</Text></Text>
+        <Text style={styles.price}>Giá: {data.price.sellPrice}</Text>
+        <Text>Đã giảm thêm: <Text style={styles.sale}>{+data.price.supplierSalePrice - +data.price.sellPrice}</Text></Text>
       </View>
-      <Checkbox color="#1434C3" status={checkbox} onPress={handleClickCheckbox}/>
+      <Checkbox color="#1434C3" status={checkbox} onPress={handleClickCheckbox} />
     </View>
   )
 }

@@ -5,22 +5,24 @@ import { StyleSheet, View, Text } from 'react-native'
 import Promotion from './Promotion'
 /* eslint-disable react/prop-types */
 export default function Promotions (props) {
-  const { promotions } = props.data
+  const { defaultPromotions, selectionPromotions } = props.data?.combination
   return (
     <View style={styles.container}>
       <View style={styles.promotions}>
         <Text>Chọn một trong những khuyến mãi sau</Text>
-        {promotions.map((item, index) => (
+        {selectionPromotions?.map((item, index) => (
           <Promotion data={item} key={index} />
         ))}
       </View>
       <View style={styles.relatedPromotions}>
         <Text style={styles.relatedPromotionsTitle}> Khuyến mãi liên quan</Text>
-        {props.data.related_promotions.map((item, index) =>
+        {defaultPromotions && defaultPromotions.map((item, index) =>
           <View key={index} style={styles.relatedPromotionsWrapper}>
-            <Text>
-              - {item.content}
-            </Text>
+            {item.benefit.items && item.benefit.items.map((e, i) =>
+              <Text key={i}>
+                - {e.name}
+              </Text>
+            )}
           </View>
         )
         }

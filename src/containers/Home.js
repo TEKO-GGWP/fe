@@ -36,7 +36,6 @@ const Home = (props) => {
     props.navigation.navigate('Cart')
   }
   const onNavigatingToDetailScreen = (data) => {
-    console.log(data)
     props.navigation.navigate('Detail', { product: data })
   }
   return (

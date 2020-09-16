@@ -85,3 +85,29 @@ export const actFetchPhongVuChoice = (phongVuChoice) => {
     phongVuChoice
   }
 }
+
+export const actFetchSimilarProductsRequest = () => {
+  return dispatch => {
+    return Axios.get(`${URL}/product-range?from=${8}&offset=${4}`)
+      .then(res => dispatch(actFetchSimilarProducts(res.data)))
+  }
+}
+export const actFetchSimilarProducts = (products) => {
+  return {
+    type: Types.FETCH_SIMILAR_PRODUCTS,
+    products
+  }
+}
+
+export const actFetchSameBrandProductsRequest = () => {
+  return dispatch => {
+    return Axios.get(`${URL}/product-range?from=${8}&offset=${4}`)
+      .then(res => dispatch(actFetchSameBrandProducts(res.data)))
+  }
+}
+export const actFetchSameBrandProducts = (products) => {
+  return {
+    type: Types.FETCH_SAME_BRAND_PRODUCTS,
+    products
+  }
+}

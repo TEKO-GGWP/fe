@@ -5,12 +5,13 @@ import { StyleSheet, View, Text } from 'react-native'
 import { DataTable } from 'react-native-paper'
 /* eslint-disable react/prop-types */
 export default function Specifications (props) {
-  const { specifications } = props.data
+  // eslint-disable-next-line camelcase
+  const { tech_specifications } = props.data
   return (
     <View style={styles.container}>
       <Text style={styles.specsTitle}>Thông số kỹ thuật</Text>
       <DataTable>
-        {Object.keys(specifications).map((key, index) => (
+        {Object.keys(tech_specifications).map((key, index) => (
           <DataTable.Row
             key={index}
             style={index % 2 ? styles.evenRow : styles.oddRow}
@@ -22,7 +23,7 @@ export default function Specifications (props) {
             </DataTable.Cell>
             <DataTable.Cell style={styles.rightCell} >
               <Text numberOfLines={2} style={styles.rightCellContent}>
-                {specifications[key]}
+                {tech_specifications[key]}
               </Text>
             </DataTable.Cell>
           </DataTable.Row>

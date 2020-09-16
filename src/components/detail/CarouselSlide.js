@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleSheet, Image, View, Text } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
-import * as SAMPLE_PRODUCTS from '../../data/sample_detail_products.json'
 export default function CarouselSlide (props) {
   /* eslint-disable react/prop-types */
   const { data } = props
@@ -12,7 +11,7 @@ export default function CarouselSlide (props) {
       >
         <Image
           style={styles.renderItemImg}
-          source={item.path}
+          source={{ uri: item?.url }}
           resizeMode="cover"
         />
       </View>
@@ -21,22 +20,22 @@ export default function CarouselSlide (props) {
   return (
     <View style={styles.container}>
       <Carousel
-        data={data}
+        data={data?.images}
         renderItem={renderItem}
         sliderWidth={300}
         itemWidth={300}
         layout={'default'}
         style={styles.carousel}
       />
-      <Text style={styles.title}>{SAMPLE_PRODUCTS.title}</Text>
+      <Text style={styles.title}>{data?.name}</Text>
       <Text style={styles.brandWrapper}>
-        By <Text style={styles.brand}>{SAMPLE_PRODUCTS.brand}</Text>
-        <Text> | SKU: {SAMPLE_PRODUCTS.SKU}</Text>
+        By <Text style={styles.brand}>{data?.tech_specifications?.['Thương hiệu']}</Text>
+        <Text> | SKU: {data?.sku}</Text>
       </Text>
       <Text style={styles.remain}>
-        Chỉ còn {SAMPLE_PRODUCTS.remain} sản phẩm
+        Chỉ còn {data?.totalAvailable} sản phẩm
       </Text>
-      <Text style={styles.price}>{SAMPLE_PRODUCTS.price}</Text>
+      <Text style={styles.price}>{data?.price?.supplierSalePrice}</Text>
     </View>
   )
 }
