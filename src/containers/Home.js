@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import IntroItem from '../components/IntroItem'
 import Interest from '../components/Interest'
 import Category from '../components/Category'
@@ -14,24 +14,31 @@ import {
   View
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
-import { category, introUrl } from '../data/sample'
+import { introUrl } from '../data/sample'
 import { connect } from 'react-redux'
+import { actFetchHotDealRequest, actFetchItChoiceRequest, actFetchOfficerChoiceRequest, actFetchPhongVuChoiceRequest } from '../actions'
 
-function Home (props) {
+const Home = (props) => {
   const handleGoTop = () => {
-    this.scroll.scrollTo({
-      y: 0,
-      animated: true
-    })
+    // this.scroll.scrollTo({
+    //   y: 0,
+    //   animated: true
+    // })
   }
-
+  const { category } = props
+  useEffect(() => {
+    props.onFetchItChoice()
+    props.onFetchHotDeal()
+    props.onFetchPhongVuChoice()
+    props.onFetchOfficerChoice()
+  }, [])
   const onNavigatingToCartScreen = (data) => {
     props.navigation.navigate('Cart')
   }
   const onNavigatingToDetailScreen = (data) => {
-    props.navigation.navigate('Detail')
+    console.log(data)
+    props.navigation.navigate('Detail', { product: data })
   }
-  console.log(props.userInformation)
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -66,9 +73,11 @@ function Home (props) {
         </View>
       </View>
 
-      <ScrollView style={styles.body} ref={(c) => {
-        this.scroll = c
-      }}>
+      <ScrollView style={styles.body}
+      //  ref={(c) => {
+      //   this.scroll = c
+      // }
+      >
         <FlatList
           data={introUrl}
           renderItem={item => <IntroItem item={item.item} />}
@@ -164,9 +173,26 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
+  const { hotDeal, itChoice, phongVuChoice, officerChoice } = state
   return {
-    userInformation: state.userInformation
+    userInformation: state.userInformation,
+    category: [
+      hotDeal,
+      itChoice,
+      phongVuChoice,
+      officerChoice
+    ]
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAddToCart: (product) => { dispatch() },
+    onFetchProductById: (sku) => { dispatch() },
+    onFetchHotDeal: () => { dispatch(actFetchHotDealRequest()) },
+    onFetchPhongVuChoice: () => { dispatch(actFetchPhongVuChoiceRequest()) },
+    onFetchOfficerChoice: () => { dispatch(actFetchOfficerChoiceRequest()) },
+    onFetchItChoice: () => { dispatch(actFetchItChoiceRequest()) }
   }
 }
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

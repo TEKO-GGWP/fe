@@ -14,8 +14,8 @@ const Category = (props) => {
       />
       <FlatList
         data={item.item}
-        renderItem={item => <CategoryItem item={item.item} showDiscounted={showDiscounted} onPress={onPress}/>}
-        keyExtractor={item => item.id}
+        renderItem={item => <CategoryItem item={item.item} showDiscounted={showDiscounted} onPress={onPress} />}
+        keyExtractor={item => item.id?.toString()}
         numColumns={2}
       />
     </View>

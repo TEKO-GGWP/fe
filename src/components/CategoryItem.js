@@ -13,10 +13,10 @@ const CategoryItem = (props) => {
   const { item, onPress, showDiscounted } = props
   return (
     <View style={styles.categoryItem}>
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={() => onPress(item)}>
         <View style={styles.itemImageContainer}>
           <Image
-            source={item.image}
+            source={{ uri: item?.images?.[0]?.url }}
             style={styles.itemImage}
           />
         </View>
@@ -24,12 +24,12 @@ const CategoryItem = (props) => {
           numberOfLines={2}
           style={styles.itemName}
         >
-          {item.name}
+          {item?.displayName}
         </Text>
       </TouchableOpacity>
       <View style={styles.priceContainer}>
         <CategoryPrice
-          price={item.price}
+          price={item?.price?.sellPrice}
           cls={styles.itemPrice}
         />
         <Feather
@@ -43,7 +43,7 @@ const CategoryItem = (props) => {
             Giảm ngay
           </Text>
           <CategoryPrice
-            price={item.discountRate}
+            price={+item?.price?.sellPrice - +item?.price?.supplierSalePrice}
             cls={styles.saleText}
           />
         </View>
@@ -52,13 +52,13 @@ const CategoryItem = (props) => {
             Chỉ còn
           </Text>
           <CategoryPrice
-            price={item.discountedPrice}
+            price={item?.price?.supplierSalePrice}
             cls={styles.saleText}
           />
         </View>
       </View>
       <View style={{ display: showDiscounted ? 'flex' : 'none' }}>
-        {item.gifts.length > 0 && <CategoryGift gifts={item.gifts}/>}
+        {<CategoryGift gifts={item?.images} />}
       </View>
     </View>
   )
@@ -77,7 +77,9 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginLeft: 5,
     marginRight: 5,
-    resizeMode: 'cover'
+    resizeMode: 'contain',
+    width: 200,
+    height: 200
   },
   itemName: {
     padding: 5

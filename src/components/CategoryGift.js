@@ -7,13 +7,13 @@ const CategoryGift = ({ gifts }) => {
     <View style={styles.container}>
       <Text style={{ fontSize: 11 }}>Tặng ngay</Text>
       {/* eslint-disable-next-line react/prop-types */}
-      {gifts.map(
-        (item, i) =>
-          <Image
-            source={item}
-            key={`gift${i}`}
-            style={styles.itemGifts}
-          />
+      {gifts?.map(
+        (item, id) => <Image
+          source={{ uri: item.url }}
+          key={`gift${id}`}
+          style={styles.itemGifts}
+        />
+
       )}
     </View>
   )
