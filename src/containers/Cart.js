@@ -16,23 +16,23 @@ import { Feather } from '@expo/vector-icons'
 import Icon from '../components/common/Icon'
 
 const Cart = (props) => {
-  /* eslint-disable no-unused-vars */
-
-  /* eslint-enable no-unused-vars */
+  const { cart } = props
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Feather
-          name="chevron-left"
-          size={30}
-          color="#239FE6"
-        />
+        <TouchableOpacity>
+          <Feather
+            name="chevron-left"
+            size={30}
+            color="#239FE6"
+            onPress={() => props.navigation.goBack()}
+          />
+        </TouchableOpacity>
         <Text style={styles.title}>Giỏ hàng</Text>
       </View>
       <ScrollView style={styles.body}>
-        <CartItem />
-        <CartItem />
-        <CartItem />
+        {cart && cart?.addedProducts?.map((e, i) => <CartItem key={i} data={e} />)}
+
       </ScrollView>
       <View style={styles.couponWrapper}>
         <TextInput
@@ -40,22 +40,22 @@ const Cart = (props) => {
           style={styles.textInput}
           placeholder="Mã giảm giá"
         />
-        <TouchableOpacity style={styles.couponButton}>
+        <TouchableOpacity style={styles.couponButton} onPress={() => alert('Không khả dụng')}>
           <Text style={styles.couponText}>APPLY</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.checkOutWrapper}>
         <View style={styles.checkOutText}>
           <Text style={styles.greyText}>Tạm tính</Text>
-          <Text style={styles.greyText}>11280000</Text>
+          <Text style={styles.greyText}>{cart.sellPriceTotal}</Text>
         </View>
         <View style={styles.checkOutText}>
           <Text style={styles.greyText}>Giảm giá</Text>
-          <Text style={styles.greyText}>11280000</Text>
+          <Text style={styles.greyText}>{cart.sellPriceTotal - cart.supplierSaleTotal}</Text>
         </View>
         <View style={styles.checkOutText}>
           <Text style={styles.total}>Tổng tiền</Text>
-          <Text style={styles.total}>11280000</Text>
+          <Text style={styles.total}>{cart.supplierSaleTotal}</Text>
         </View>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>THANH TOÁN</Text>
@@ -169,7 +169,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    userInformation: state.userInformation
+    userInformation: state.userInformation,
+    cart: state.cart
   }
 }
 

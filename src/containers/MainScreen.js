@@ -11,6 +11,7 @@ import Home from './Home'
 import Cart from './Cart'
 import Detail from './Detail'
 import ConfirmOTP from './ConfirmOTP'
+import Search from './Search'
 
 const Stack = createStackNavigator()
 const MainScreen = (props) => {
@@ -42,6 +43,7 @@ const MainScreen = (props) => {
           <Stack.Screen name="SignUpForm" component={SignUpForm} options={{ headerShown: false }} />
           <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
           <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
+          <Stack.Screen name="Search" component={Search} options={{ headerShown: false }} />
           <Stack.Screen name="Detail" component={Detail} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>

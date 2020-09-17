@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Image,
   StyleSheet,
@@ -8,50 +8,47 @@ import {
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Feather } from '@expo/vector-icons'
 import { connect } from 'react-redux'
-
-const item = {
-  id: '1',
-  image: require('../../../assets/s531fa/1.png'),
-  name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
-  brand: 'ASUS',
-  price: 17290000,
-  discountRate: 1100000,
-  discountedPrice: 16190000,
-  isRemain: true
-}
+import { actAddQuantity, actRemoveFromCart, actSubtractQuantity } from '../../actions'
 
 const CartItem = (props) => {
-  /* eslint-disable no-unused-vars */
-
-  /* eslint-enable no-unused-vars */
+  const { key, data } = props
+  const [, onChangeQuantity] = useState(0)
   return (
-    <View style={styles.container}>
+    <View style={styles.container} key={key}>
       <View style={styles.imageWrapper}>
-        <Image source={item.image} style={styles.image} resizeMode='contain' />
+        <Image source={{ uri: data?.images?.[0].url }} style={styles.image} resizeMode='contain' />
       </View>
       <View style={styles.detail}>
-        <Text style={styles.title}>{item.name}</Text>
-        <Text style={styles.brand}>Cung cấp bởi {item.brand}</Text>
-        {item.discountedPrice
-          ? <Text Text style={styles.discountedPrice}>{item.discountedPrice}đ</Text>
-          : <></>
+        <Text style={styles.title}>{data?.displayName}</Text>
+        <Text style={styles.brand}>Cung cấp bởi {data?.tech_specifications?.['Thương hiệu']}</Text>
+        {(data.price.sellPrice - data.price.supplierSalePrice > 0)
+          ? (
+            <>
+              <Text Text style={styles.discountedPrice}>{data.price.supplierSalePrice}đ</Text>
+              <Text style={{
+                ...styles.price,
+                textDecorationLine: 'line-through',
+                textDecorationStyle: 'solid'
+              }}>{data.price.sellPrice}đ</Text>
+            </>
+          )
+          : <Text style={styles.price}>{data.price.sellPrice}đ</Text>
         }
-        <Text style={styles.price}>{item.price}đ</Text>
         <View style={styles.amountWrapper}>
-          {item.isRemain
+          {data.totalAvailable
             ? <Text style={styles.isRemain}>Còn hàng</Text>
             : <Text style={styles.isNotRemain}>Hết hàng</Text>
           }
           <View style={styles.amountButtonWrapper}>
-            <TouchableOpacity style={styles.amountButton}>
+            <TouchableOpacity style={styles.amountButton} onPress={() => { props.onSubtractingQuantity(data.sku); onChangeQuantity(data.quantity) }}>
               <Feather
                 name="minus"
                 size={16}
                 color="#14C32A"
               />
             </TouchableOpacity>
-            <Text style={styles.amount}>1</Text>
-            <TouchableOpacity style={styles.amountButton}>
+            <Text style={styles.amount}>{data.quantity}</Text>
+            <TouchableOpacity style={styles.amountButton} onPress={() => { props.onAddingQuantity(data.sku); onChangeQuantity(data.quantity) }}>
               <Feather
                 name="plus"
                 size={16}
@@ -61,7 +58,7 @@ const CartItem = (props) => {
           </View>
         </View>
       </View>
-      <TouchableOpacity >
+      <TouchableOpacity onPress={() => props.onRemovingFromCart(data.sku)}>
         <Feather
           name="x"
           size={24}
@@ -104,8 +101,7 @@ const styles = StyleSheet.create({
   },
   price: {
     color: '#C31414',
-    textDecorationLine: 'line-through',
-    textDecorationStyle: 'solid',
+
     marginBottom: 10
   },
   discountedPrice: {
@@ -156,7 +152,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddUserInformation: (userInformation) => {
+    onAddingQuantity: (sku) => {
+      dispatch(actAddQuantity(sku))
+    },
+    onSubtractingQuantity: (sku) => {
+      dispatch(actSubtractQuantity(sku))
+    },
+    onRemovingFromCart: (sku) => {
+      dispatch(actRemoveFromCart(sku))
     }
   }
 }

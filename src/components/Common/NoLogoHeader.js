@@ -16,7 +16,7 @@ export default function NoLogoHeader (props) {
           color="#239FE6"
         />
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => props.onAddingToCart(props.data)}>
         <Feather
           name="shopping-cart"
           size={30}

@@ -27,13 +27,6 @@ export const actFetchProductById = (product) => {
   }
 }
 
-export const actAddToCart = (cartItem) => {
-  return {
-    type: Types.ADD_TO_CART,
-    cartItem
-  }
-}
-
 export const actFetchHotDealRequest = () => {
   return dispatch => {
     return Axios.get(`${URL}/product-range?from=${0}&offset=${4}`)
@@ -109,5 +102,36 @@ export const actFetchSameBrandProducts = (products) => {
   return {
     type: Types.FETCH_SAME_BRAND_PRODUCTS,
     products
+  }
+}
+
+// Cart
+export const actAddToCart = product => {
+  return {
+    type: Types.ADD_TO_CART,
+    product
+  }
+}
+export const actRemoveFromCart = sku => {
+  return {
+    type: Types.REMOVE_FROM_CART,
+    sku
+  }
+}
+export const actSubtractQuantity = sku => {
+  return {
+    type: Types.SUB_QUANTITY,
+    sku
+  }
+}
+export const actAddQuantity = sku => {
+  return {
+    type: Types.ADD_QUANTITY,
+    sku
+  }
+}
+export const actEmptyCart = () => {
+  return {
+    type: Types.EMPTY_CART
   }
 }

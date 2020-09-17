@@ -12,7 +12,7 @@ import {
   StyleSheet
 } from 'react-native'
 
-export default function Search () {
+export default function Search (props) {
   const [search, setSearch] = useState('')
 
   const handleSearch = (text) => {
@@ -21,11 +21,11 @@ export default function Search () {
 
   return (
     <SafeAreaView style={styles.container}>
-      <NoLogoHeader />
-      <SearchBar search={search} handleSearch={(text) => handleSearch(text)}/>
+      <NoLogoHeader navigation={props.navigation}/>
+      <SearchBar search={search} handleSearch={(text) => handleSearch(text)} />
       {search
         ? <View style={styles.body}>
-          <SuggestTab handleSearch={handleSearch}/>
+          <SuggestTab handleSearch={handleSearch} />
           <SearchResult count={0} search={search} />
         </View>
         : <View style={styles.body}>

@@ -14,6 +14,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import { actAddToCart, actFetchSameBrandProductsRequest, actFetchSimilarProductsRequest } from '../actions'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 // import { Button } from 'react-native-paper'
 // import { Feather } from '@expo/vector-icons'
 
@@ -24,19 +25,23 @@ const Detail = (props) => {
     props.onFetchSameBrandProduct()
     props.onFetchSimilarProduct()
   }, [])
-  // const onAddToCart = () => {
-  //   props.onAddToCart(product)
-  // }
+
   const onNavigatingToDetailScreen = (data) => {
     props.navigation.navigate('Detail', { product: data })
   }
+  const onAddingToCart = (item) => {
+    alert('Đã thêm sản phẩm')
+    props.onAddingToCart(item)
+  }
+  const onBuyingNow = () => {
+    props.onAddingToCart(product)
+    props.navigation.navigate('Cart')
+  }
   return (
     <SafeAreaView style={styles.container}>
-      <NoLogoHeader navigation={props.navigation} />
+      <NoLogoHeader navigation={props.navigation} onAddingToCart={onAddingToCart} data={product} />
       <ScrollView style={styles.body}>
         <CarouselSlide data={product} />
-        {/* <Button title="add to cart"
-          onPress={onAddToCart} /> */}
         <Specifications data={product} />
         <Promotions data={product} />
         <PoliciesAndServices />
@@ -52,10 +57,12 @@ const Detail = (props) => {
           />
         </View> */}
         <View style={[styles.footerItem, styles.footerRight]}>
-          <Text style={styles.buyNow}>Mua ngay</Text>
+          <TouchableOpacity onPress={onBuyingNow}>
+            <Text style={styles.buyNow}>Mua ngay</Text>
+          </TouchableOpacity>
         </View>
-      </View>
-    </SafeAreaView>
+      </View >
+    </SafeAreaView >
   )
 }
 
@@ -151,7 +158,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddToCart: (product) => {
+    onAddingToCart: (product) => {
       dispatch(actAddToCart(product))
     },
     onFetchSameBrandProduct: () => {

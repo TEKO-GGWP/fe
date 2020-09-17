@@ -32,11 +32,15 @@ const Home = (props) => {
     props.onFetchPhongVuChoice()
     props.onFetchOfficerChoice()
   }, [])
-  const onNavigatingToCartScreen = (data) => {
+  const onNavigatingToCartScreen = () => {
     props.navigation.navigate('Cart')
   }
   const onNavigatingToDetailScreen = (data) => {
     props.navigation.navigate('Detail', { product: data })
+  }
+
+  const onNavigatingToSearchScreen = (data) => {
+    props.navigation.navigate('Search')
   }
   return (
     <SafeAreaView style={styles.container}>
@@ -50,7 +54,7 @@ const Home = (props) => {
           </Text>
         </View>
         <View style={styles.iconBox}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={onNavigatingToSearchScreen}>
             <Feather
               name='search'
               size={25}

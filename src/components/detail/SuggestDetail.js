@@ -23,7 +23,7 @@ export default function SuggestDetail (props) {
         {props.data && <FlatList
           data={data}
           renderItem={item => <CategoryItem item={item?.item} width={200} onPress={onPress} />}
-          keyExtractor={item => item?.id?.toString()}
+          keyExtractor={(_item, index) => String(index)}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
         />}

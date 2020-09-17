@@ -149,7 +149,6 @@ const SignUpForm = (props) => {
             </Text>
           </TouchableOpacity>
         </View>
-
         <View style={styles.footer}>
           <Image style={styles.logoImage} source={phongvuLogo} />
           <Image style={styles.iconImage} source={phongvuIcon} />
