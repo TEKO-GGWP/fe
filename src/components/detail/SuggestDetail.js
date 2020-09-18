@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
   StyleSheet,
   View,
@@ -9,11 +9,8 @@ import {
 } from 'react-native'
 import CategoryItem from '../CategoryItem'
 
-export default function SuggestDetail(props) {
+export default function SuggestDetail (props) {
   const { data, index, name, onPress } = props
-  useEffect(() => {
-    console.log(data)
-  }, [])
   return (
     <View style={styles.container} key={index}>
       <View style={styles.titleWrapper}>

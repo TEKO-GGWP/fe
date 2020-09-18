@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ImageBackground
 } from 'react-native'
+import { connect } from 'react-redux'
 
 import { DATA } from '../../data/search_catalogue'
 
@@ -25,7 +26,7 @@ const CatalogueItem = (item) => {
   )
 }
 
-export default function Catalogue () {
+const Catalogue = (props) => {
   return (
     <View style={styles.catalogue}>
       <Text style={styles.title}>Catalogue</Text>
@@ -72,3 +73,10 @@ const styles = StyleSheet.create({
     fontSize: 12
   }
 })
+const mapStateToProps = state => {
+  return {
+    phongVuChoice: state.phongVuChoice
+  }
+}
+
+export default connect(mapStateToProps)(Catalogue)

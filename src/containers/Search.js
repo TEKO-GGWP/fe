@@ -9,35 +9,48 @@ import SearchResult from '../components/search/SearchResult'
 import {
   SafeAreaView,
   View,
-  StyleSheet
+  StyleSheet,
+  ActivityIndicator
 } from 'react-native'
 import { connect } from 'react-redux'
 import { actFetchProductsByNameRequest } from '../actions'
+import { ScrollView } from 'react-native-gesture-handler'
 
 const Search = (props) => {
   const [search, setSearch] = useState('')
+  const [historyList, setHistoryList] = useState([])
+  const [isSearching, setIsSearching] = useState(false)
 
   const handleStateSearch = (text) => {
     setSearch(text)
   }
-  const handleSearch = () => {
-    props.onFetchProductsByName(search)
+  const handleSearch = async () => {
+    setIsSearching(true)
+    await props.onFetchProductsByName(search)
+    setIsSearching(false)
+    setHistoryList(prev => [...prev, [search]])
   }
   return (
     <SafeAreaView style={styles.container}>
-      <NoLogoHeader navigation={props.navigation} />
-      <SearchBar search={search} handleStateSearch={(text) => handleStateSearch(text)} handleSearch={handleSearch} />
-      {search
-        ? <View style={styles.body}>
-          <SuggestTab handleSearch={handleStateSearch} />
-          <SearchResult count={2} search={search} />
-        </View>
-        : <View style={styles.body}>
-          <History />
-          <Catalogue />
-          <Suggest />
-        </View>
-      }
+      <ScrollView>
+        <NoLogoHeader navigation={props.navigation} />
+        <SearchBar search={search} handleStateSearch={(text) => handleStateSearch(text)} handleSearch={handleSearch} />
+        {search
+          ? (
+            isSearching ? <ActivityIndicator size="large" />
+              : <View style={styles.body}>
+                <SuggestTab handleSearch={handleStateSearch} />
+                <SearchResult count={2} search={search} />
+              </View>
+          )
+
+          : <View style={styles.body}>
+            <History historyList={historyList} />
+            <Catalogue />
+            <Suggest />
+          </View>
+        }
+      </ScrollView>
     </SafeAreaView>
   )
 }

@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
-export default function SearchBar(props) {
+export default function SearchBar (props) {
   const { search, handleStateSearch, handleSearch } = props
 
   const handleRemoveSearchAll = () => {

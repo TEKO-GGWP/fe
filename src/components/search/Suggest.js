@@ -7,12 +7,13 @@ import {
   StyleSheet
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
-import { category } from '../../data/sample'
+// import { category } from '../../data/sample'
+import { connect } from 'react-redux'
 
-export default function Suggest () {
+const Suggest = (props) => {
   const [suggestList, setSuggestList] = useState([])
   const [suggestPage, setSuggestPage] = useState(0)
-
+  const { phongVuChoice } = props
   useEffect(() => {
     getSuggestList(0)
   }, [])
@@ -20,7 +21,7 @@ export default function Suggest () {
   const getSuggestList = (start) => {
     const arr = []
     for (let i = start; i < start + 2; i++) {
-      arr.push(category[0].item[i])
+      arr.push(phongVuChoice[i])
     }
     setSuggestList(arr)
   }
@@ -48,7 +49,7 @@ export default function Suggest () {
           <Feather
             name="chevron-left"
             size={40}
-            style={ suggestPage < 1 ? styles.hide : '' }
+            style={suggestPage < 1 ? styles.hide : ''}
           />
         </TouchableOpacity>
         <View style={{ flexDirection: 'row', width: '75%' }}>
@@ -61,7 +62,7 @@ export default function Suggest () {
           <Feather
             name="chevron-right"
             size={40}
-            style={ suggestPage > 1 ? styles.hide : '' }
+            style={suggestPage > 1 ? styles.hide : ''}
           />
         </TouchableOpacity>
       </View>
@@ -88,3 +89,10 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 })
+const mapStateToProps = state => {
+  return {
+    phongVuChoice: state.phongVuChoice
+  }
+}
+
+export default connect(mapStateToProps)(Suggest)

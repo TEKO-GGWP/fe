@@ -1,12 +1,12 @@
 import React from 'react'
-import Category from '../Category'
 import {
   View,
   StyleSheet,
   Text, Image
 } from 'react-native'
-import { heightPercentageToDP } from 'react-native-responsive-screen'
 import { connect } from 'react-redux'
+import { FlatList } from 'react-native-gesture-handler'
+import CategoryItem from '../CategoryItem'
 
 const SearchResult = (props) => {
   const { count, search, result } = props
@@ -18,7 +18,20 @@ const SearchResult = (props) => {
       </View>
       <View style={styles.categoryContainer}>
         {count !== 0
-          ? <Category item={result} showDiscounted={true} />
+          ? <FlatList
+            data={result}
+            renderItem={
+              item => <CategoryItem
+                item={item.item}
+                showDiscounted={true}
+                // onPress={onPress}
+                width="48%"
+              />
+            }
+            keyExtractor={(_item, index) => String(index)}
+            numColumns={2}
+            columnWrapperStyle={styles.categoryItemContainer}
+          />
           : <View>
             <Text style={styles.title}>Kết quả tìm kiếm</Text>
             <View style={styles.totalResultContainer}>
@@ -45,7 +58,7 @@ const styles = StyleSheet.create({
     color: '#FB1212'
   },
   categoryContainer: {
-    height: heightPercentageToDP('53%')
+    marginBottom: 10
   },
   suggestText: {
     color: '#FC4141',
