@@ -70,15 +70,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   shadow: {
-    shadowColor: '#000',
+    shadowColor: 'lightgrey',
     shadowOffset: {
-      width: 0,
+      width: 1,
       height: 3
     },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
 
-    elevation: 6
+    elevation: 3,
+    borderColor: 'transparent',
+    borderWidth: 1
   },
   itemImage: {
     flex: 1,
