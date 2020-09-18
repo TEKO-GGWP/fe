@@ -26,7 +26,7 @@ export default function Search (props) {
       {search
         ? <View style={styles.body}>
           <SuggestTab handleSearch={handleSearch} />
-          <SearchResult count={0} search={search} />
+          <SearchResult count={2} search={search} />
         </View>
         : <View style={styles.body}>
           <History />
