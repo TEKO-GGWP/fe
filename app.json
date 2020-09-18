@@ -19,13 +19,11 @@
     "ios": {
       "supportsTablet": true
     },
-    "android": {
-      "softwareKeyboardLayoutMode": "pan"
-    },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "android": {
+      "softwareKeyboardLayoutMode": "pan",
       "package": "com.teko.GGWP",
       "versionCode": 1
     }
