@@ -4,15 +4,16 @@ import CategoryPrice from './CategoryPrice'
 import {
   Image,
   StyleSheet,
-  Text, View
+  Text,
+  View
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const CategoryItem = (props) => {
-  const { item, onPress, showDiscounted } = props
+  const { item, onPress, showDiscounted, width } = props
   return (
-    <View style={styles.categoryItem}>
+    <View style={[styles.shadow, { width: width, padding: 10 }]}>
       <TouchableOpacity onPress={() => onPress(item)}>
         <View style={styles.itemImageContainer}>
           <Image
@@ -66,8 +67,18 @@ const CategoryItem = (props) => {
 
 const styles = StyleSheet.create({
   itemImageContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexDirection: 'row'
+  },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6
   },
   itemImage: {
     flex: 1,

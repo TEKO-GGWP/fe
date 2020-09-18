@@ -1,6 +1,9 @@
 import React from 'react'
-import { TextInput } from 'react-native-paper'
-import { View, StyleSheet } from 'react-native'
+import {
+  View,
+  StyleSheet,
+  TextInput
+} from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
 export default function SearchBar (props) {
