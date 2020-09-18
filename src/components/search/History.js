@@ -8,17 +8,15 @@ import {
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { history } from '../../data/search_catalogue'
-
-const HistoryItem = (item) => {
-  const { search, id } = item.item
-
+const HistoryItem = (props) => {
+  const { item, index } = props
   const removeHistory = (history) => {
-    history.splice(id, 1)
+    history.splice(index, 1)
   }
 
   return (
     <View style={styles.historyItem}>
-      <Text>{search}</Text>
+      <Text>{item}</Text>
       <TouchableOpacity onPress={() => removeHistory(history)}>
         <Feather
           name="x"
@@ -29,7 +27,8 @@ const HistoryItem = (item) => {
   )
 }
 
-export default function History () {
+export default function History (props) {
+  const { historyList } = props
   const removeAllHistory = () => {
     history.length = 0
   }
@@ -47,8 +46,8 @@ export default function History () {
         </TouchableOpacity>
       </View>
       <FlatList
-        data={history}
-        renderItem={item => <HistoryItem item={item.item} />}
+        data={historyList}
+        renderItem={({ item, index }) => <HistoryItem item={item} index={index} />}
         keyExtractor={item => `${item.id}`}
       />
     </View>

@@ -20,10 +20,10 @@ import { actFetchHotDealRequest, actFetchItChoiceRequest, actFetchOfficerChoiceR
 
 const Home = (props) => {
   const handleGoTop = () => {
-    // this.scroll.scrollTo({
-    //   y: 0,
-    //   animated: true
-    // })
+    this.scroll.scrollTo({
+      y: 0,
+      animated: true
+    })
   }
   const { category } = props
   useEffect(() => {
@@ -39,7 +39,7 @@ const Home = (props) => {
     props.navigation.navigate('Detail', { product: data })
   }
 
-  const onNavigatingToSearchScreen = (data) => {
+  const onNavigatingToSearchScreen = () => {
     props.navigation.navigate('Search')
   }
   return (
@@ -74,10 +74,7 @@ const Home = (props) => {
       </View>
 
       <ScrollView style={styles.body}
-      //  ref={(c) => {
-      //   this.scroll = c
-      // }
-      >
+        ref={(c) => { this.scroll = c }}>
         <FlatList
           data={introUrl}
           renderItem={item => <IntroItem item={item.item} />}
