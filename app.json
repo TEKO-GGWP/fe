@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "fe",
+    "name": "GGWP",
     "slug": "fe",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -21,6 +21,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }  
+    },
+    "android": {
+      "package": "com.teko.GGWP",
+      "versionCode": 1
+    }
   }
 }

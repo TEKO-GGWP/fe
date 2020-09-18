@@ -140,10 +140,9 @@ const SignUpForm = (props) => {
                   ))}
             </Picker>
           </View>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={sendUserProfile}>
             <Text
               style={styles.text}
-              onPress={sendUserProfile}
             >
               Tiếp tục
             </Text>
