@@ -11,21 +11,25 @@ import {
   View,
   StyleSheet
 } from 'react-native'
+import { connect } from 'react-redux'
+import { actFetchProductsByNameRequest } from '../actions'
 
-export default function Search (props) {
+const Search = (props) => {
   const [search, setSearch] = useState('')
 
-  const handleSearch = (text) => {
+  const handleStateSearch = (text) => {
     setSearch(text)
   }
-
+  const handleSearch = () => {
+    props.onFetchProductsByName(search)
+  }
   return (
     <SafeAreaView style={styles.container}>
-      <NoLogoHeader navigation={props.navigation}/>
-      <SearchBar search={search} handleSearch={(text) => handleSearch(text)} />
+      <NoLogoHeader navigation={props.navigation} />
+      <SearchBar search={search} handleStateSearch={(text) => handleStateSearch(text)} handleSearch={handleSearch} />
       {search
         ? <View style={styles.body}>
-          <SuggestTab handleSearch={handleSearch} />
+          <SuggestTab handleSearch={handleStateSearch} />
           <SearchResult count={2} search={search} />
         </View>
         : <View style={styles.body}>
@@ -49,3 +53,14 @@ const styles = StyleSheet.create({
     marginRight: 10
   }
 })
+const mapStateToProps = state => {
+  return {
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onFetchProductsByName: (keyword) => { dispatch(actFetchProductsByNameRequest(keyword)) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search)

@@ -6,61 +6,19 @@ import {
   Text, Image
 } from 'react-native'
 import { heightPercentageToDP } from 'react-native-responsive-screen'
+import { connect } from 'react-redux'
 
-const data = {
-  name: 'Kết quả tìm kiếm',
-  item: [
-    {
-      id: '1',
-      image: require('../../../assets/intro-home.png'),
-      name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
-      price: 17290000,
-      discountRate: 1100000,
-      discountedPrice: 16190000,
-      gifts: [require('../../../assets/intro-home.png'), require('../../../assets/intro-home.png'), require('../../../assets/intro-home.png')]
-    },
-    {
-      id: '2',
-      image: require('../../../assets/intro-home.png'),
-      name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
-      price: 17290000,
-      discountRate: 1100000,
-      discountedPrice: 16190000,
-      gifts: [require('../../../assets/intro-home.png'), require('../../../assets/intro-home.png'), require('../../../assets/intro-home.png')]
-    },
-    {
-      id: '3',
-      image: require('../../../assets/intro-home.png'),
-      name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
-      price: 17290000,
-      discountRate: 1100000,
-      discountedPrice: 16190000,
-      gifts: [require('../../../assets/intro-home.png'), require('../../../assets/intro-home.png'), require('../../../assets/intro-home.png')]
-    },
-    {
-      id: '4',
-      image: require('../../../assets/intro-home.png'),
-      name: 'Laptop ASUS VivoBook 15 A512FA-EJ1281T (15.6" FHD/i5 Core)',
-      price: 15290000,
-      discountRate: 1100000,
-      discountedPrice: 16190000,
-      gifts: [require('../../../assets/intro-home.png'), require('../../../assets/intro-home.png'), require('../../../assets/intro-home.png')]
-    }
-  ]
-}
-
-export default function SearchResult (props) {
-  const { count, search } = props
-
+const SearchResult = (props) => {
+  const { count, search, result } = props
   return (
     <View>
       <View style={styles.totalResultContainer}>
-        <Text>Có tổng cộng {count} kết quả tìm kiếm cho </Text>
+        <Text>Có tổng cộng {result.length} kết quả tìm kiếm cho </Text>
         <Text style={styles.totalSearchText}>{search}</Text>
       </View>
       <View style={styles.categoryContainer}>
         {count !== 0
-          ? <Category item={data} showDiscounted={true} />
+          ? <Category item={result} showDiscounted={true} />
           : <View>
             <Text style={styles.title}>Kết quả tìm kiếm</Text>
             <View style={styles.totalResultContainer}>
@@ -68,7 +26,7 @@ export default function SearchResult (props) {
               <Text style={styles.suggestText}> Laptop </Text>
               <Text>?</Text>
             </View>
-            <Image source={require('../../../assets/no-result.png')} style={styles.image}/>
+            <Image source={require('../../../assets/no-result.png')} style={styles.image} />
             <Text style={styles.greyText}>Xin lỗi, không có sản phẩm nào phù hợp với từ khóa của bạn</Text>
           </View>
         }
@@ -113,3 +71,15 @@ const styles = StyleSheet.create({
     marginTop: 20
   }
 })
+const mapStateToProps = state => {
+  return {
+    result: state.searchResult
+  }
+}
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onFetchProductsByName: (keyword) => { dispatch(actFetchProductsByNameRequest(keyword)) }
+//   }
+// }
+
+export default connect(mapStateToProps)(SearchResult)

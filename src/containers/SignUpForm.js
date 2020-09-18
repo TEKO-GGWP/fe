@@ -62,7 +62,7 @@ const SignUpForm = (props) => {
   }
   const sendUserProfile = () => {
     props.onAddUserInformation(userProfile)
-    storeData(true)
+    storeData('true')
     props.navigation.navigate('Home')
   }
   return (

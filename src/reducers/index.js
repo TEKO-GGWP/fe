@@ -6,6 +6,7 @@ import phongVuChoice from './category/phongVuChoice'
 import itChoice from './category/itChoice'
 import sameBrandProducts from './detail/sameBrandProducts'
 import similarProducts from './detail/similarProducts'
+import searchResult from './search/searchResult'
 import cart from './cart'
 import product from './product'
 const initialState = null
@@ -18,7 +19,8 @@ const appReducers = combineReducers({
   phongVuChoice,
   itChoice,
   sameBrandProducts,
-  similarProducts
+  similarProducts,
+  searchResult
 })
 const rootReducer = (state = initialState, action) => {
   return appReducers(state, action)

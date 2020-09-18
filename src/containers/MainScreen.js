@@ -23,7 +23,7 @@ const MainScreen = (props) => {
     try {
       const value = await AsyncStorage.getItem('@isAuthorized')
       if (value === null || !value) {
-        setIsAuthorized(false)
+        setIsAuthorized('false')
       }
     } catch (e) {
       console.log(e)
@@ -37,7 +37,7 @@ const MainScreen = (props) => {
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator>
-          {isAuthorized ? <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+          {isAuthorized === 'true' ? <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
             : <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />}
           <Stack.Screen name="ConfirmOTP" component={ConfirmOTP} options={{ headerShown: false }} />
           <Stack.Screen name="SignUpForm" component={SignUpForm} options={{ headerShown: false }} />

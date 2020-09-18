@@ -73,7 +73,7 @@ const CartItem = (props) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: 'pink',
     marginVertical: 15,
     paddingTop: 10
   },

@@ -6,11 +6,11 @@ import {
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
-export default function SearchBar (props) {
-  const { search, handleSearch } = props
+export default function SearchBar(props) {
+  const { search, handleStateSearch, handleSearch } = props
 
   const handleRemoveSearchAll = () => {
-    handleSearch('')
+    handleStateSearch('')
   }
 
   return (
@@ -27,7 +27,8 @@ export default function SearchBar (props) {
         underlineColorAndroid='white'
         autoCorrect={false}
         spellCheck={false}
-        onChangeText={handleSearch}
+        onChangeText={handleStateSearch}
+        onSubmitEditing={handleSearch}
         value={search}
       />
       {search

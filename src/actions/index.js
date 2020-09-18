@@ -135,3 +135,18 @@ export const actEmptyCart = () => {
     type: Types.EMPTY_CART
   }
 }
+
+// Search
+export const actFetchProductsByNameRequest = (keyword) => {
+  return dispatch => {
+    return Axios.get(`https://bab9d49ea291.in.ngrok.io/query?q=${keyword}`)
+      .then(res => dispatch(actFetchProductsByName(res.data))
+      )
+  }
+}
+export const actFetchProductsByName = (products) => {
+  return {
+    type: Types.FETCH_PRODUCTS_BY_NAME,
+    products
+  }
+}

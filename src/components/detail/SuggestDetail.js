@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   StyleSheet,
   View,
@@ -9,8 +9,11 @@ import {
 } from 'react-native'
 import CategoryItem from '../CategoryItem'
 
-export default function SuggestDetail (props) {
+export default function SuggestDetail(props) {
   const { data, index, name, onPress } = props
+  useEffect(() => {
+    console.log(data)
+  }, [])
   return (
     <View style={styles.container} key={index}>
       <View style={styles.titleWrapper}>
@@ -20,7 +23,7 @@ export default function SuggestDetail (props) {
         </TouchableOpacity>
       </View>
       <View style={styles.sameBrandItemWrapper}>
-        {props.data && <FlatList
+        {data.length > 0 && <FlatList
           data={data}
           renderItem={item => <CategoryItem item={item?.item} width={200} onPress={onPress} />}
           keyExtractor={(_item, index) => String(index)}

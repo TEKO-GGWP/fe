@@ -8,7 +8,7 @@ const CategoryGift = ({ gifts }) => {
       <Text style={{ fontSize: 11 }}>Tặng ngay</Text>
       {/* eslint-disable-next-line react/prop-types */}
       <View style={styles.giftContainer}>
-        {gifts.map(
+        {gifts?.map(
           (item, id) =>
             id < 2
               ? <Image
