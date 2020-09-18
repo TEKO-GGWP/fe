@@ -14,7 +14,14 @@ const Category = (props) => {
       />
       <FlatList
         data={item.item}
-        renderItem={item => <CategoryItem item={item.item} showDiscounted={showDiscounted} onPress={onPress} width="48%" />}
+        renderItem={
+          item => <CategoryItem
+            item={item.item}
+            showDiscounted={showDiscounted}
+            onPress={onPress}
+            width="48%"
+          />
+        }
         keyExtractor={(_item, index) => String(index)}
         numColumns={2}
         columnWrapperStyle={styles.categoryItemContainer}
