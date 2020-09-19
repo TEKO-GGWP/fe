@@ -20,7 +20,9 @@ const Search = (props) => {
   const [search, setSearch] = useState('')
   const [historyList, setHistoryList] = useState([])
   const [isSearching, setIsSearching] = useState(false)
-
+  const onNavigatingToDetailScreen = (data) => {
+    props.navigation.navigate('Detail', { product: data })
+  }
   const handleStateSearch = (text) => {
     setSearch(text)
   }
@@ -40,7 +42,7 @@ const Search = (props) => {
             isSearching ? <ActivityIndicator size="large" />
               : <View style={styles.body}>
                 <SuggestTab handleSearch={handleStateSearch} />
-                <SearchResult count={2} search={search} />
+                <SearchResult count={2} search={search} onPress={onNavigatingToDetailScreen} />
               </View>
           )
 

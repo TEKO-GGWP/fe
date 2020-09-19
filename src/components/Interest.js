@@ -6,6 +6,8 @@ import {
   View
 } from 'react-native'
 
+import buildPcBackground from '../../assets/buildpc.png'
+import itNews from '../../assets/tincongnghe.png'
 import introBackground from '../../assets/intro-home.png'
 
 const Interest = () => {
@@ -17,22 +19,22 @@ const Interest = () => {
       <View style={styles.container}>
         <View style={styles.interestItem}>
           <ImageBackground
-            source={introBackground}
+            source={buildPcBackground}
             style={styles.interestBgr}
             imageStyle={styles.interestImg}
           >
-            <Text style={styles.interestText}>Build PC</Text>
+            {/* <Text style={styles.interestText}>Build PC</Text> */}
           </ImageBackground>
         </View>
         <View style={styles.interestItem}>
           <ImageBackground
-            source={introBackground}
+            source={itNews}
             style={styles.interestBgr}
             imageStyle={styles.interestImg}
           >
-            <Text style={styles.interestText}>
+            {/* <Text style={styles.interestText}>
               Tin Công Nghệ
-            </Text>
+            </Text> */}
           </ImageBackground>
         </View>
       </View>
@@ -42,9 +44,9 @@ const Interest = () => {
           style={styles.interestBgr}
           imageStyle={styles.interestImg}
         >
-          <Text style={styles.interestText}>
+          {/* <Text style={styles.interestText}>
             Sản phẩm được yêu thích
-          </Text>
+          </Text> */}
         </ImageBackground>
       </View>
       <View>

@@ -5,11 +5,15 @@ export const introUrl = [
   },
   {
     id: '2',
-    url: require('../../assets/intro-home.png')
+    url: require('../../assets/intro-home-2.png')
   },
   {
     id: '3',
-    url: require('../../assets/intro-home.png')
+    url: require('../../assets/intro-home-3.png')
+  },
+  {
+    id: '3',
+    url: require('../../assets/intro-home-4.png')
   }
 ]
 

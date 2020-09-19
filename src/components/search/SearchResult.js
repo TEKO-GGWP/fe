@@ -9,7 +9,7 @@ import { FlatList } from 'react-native-gesture-handler'
 import CategoryItem from '../CategoryItem'
 
 const SearchResult = (props) => {
-  const { count, search, result } = props
+  const { count, search, result, onPress } = props
   return (
     <View>
       <View style={styles.totalResultContainer}>
@@ -24,7 +24,7 @@ const SearchResult = (props) => {
               item => <CategoryItem
                 item={item.item}
                 showDiscounted={true}
-                // onPress={onPress}
+                onPress={onPress}
                 width="48%"
               />
             }

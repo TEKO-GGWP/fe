@@ -39,7 +39,7 @@ const Home = (props) => {
     props.navigation.navigate('Detail', { product: data })
   }
 
-  const onNavigatingToSearchScreen = (data) => {
+  const onNavigatingToSearchScreen = () => {
     props.navigation.navigate('Search')
   }
   return (
